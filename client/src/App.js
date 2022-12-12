@@ -12,8 +12,8 @@ import Auth from './utils/auth';
 
 /// IMPORT PAGES ///
 import Landing from './pages/Landing';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Signup from './components/SignUp/SignUp';
+import Login from './components/Login/Login';
 import Dashboard from './pages/Dashboard';
 
 /// IMPORT COMPONENTS ///
