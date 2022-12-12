@@ -8,8 +8,14 @@ const groupSchema = new Schema(
     },
     members: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        isAdmin: {
+          type: Boolean,
+          default: () => false,
+        },
       },
     ],
     messages: [
