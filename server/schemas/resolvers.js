@@ -1,18 +1,20 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Group } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     /// GETS ONE USER ///
     user: async (parent, { userId }, context) => {
       if (context.user) {
-        const userData = await (await User.findOne({ _id: userId }).select('-__v -password'));
+        const userData = await User.findOne({ _id: userId }).select(
+          "-__v -password"
+        );
 
         return userData;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
   },
 
@@ -29,19 +31,19 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect Credentials');
+        throw new AuthenticationError("Incorrect Credentials");
       }
 
       const correctPassword = await user.isCorrectPassword(password);
 
       if (!correctPassword) {
-        throw new AuthenticationError('Incorrect Credentials');
+        throw new AuthenticationError("Incorrect Credentials");
       }
 
       const token = signToken(user);
       return { token, user };
     },
-  }
+  },
 };
 
 module.exports = resolvers;
