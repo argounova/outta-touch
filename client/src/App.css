@@ -1,1 +1,44 @@
+:root {
+    /** Color Scheme Variables */
+    
+    /* Main theme colors (found in logo) */
+    --light-grey: #F2EAF0;
+    --purple-pink: #FC4BD3;
+    --yellow: #FFFA1E;
+    --orange: #FFB943;
+    --blue: #231495;
 
+    /* !Including shades of each color to use in order to accent the main theme colors found in the logo... meant for borders, text shadow, limited background use etc. */
+
+    /* shades light grey */
+    --LGshade1: #B3ADB1;
+    --LGshade2: #736F72;
+    --LGshade3: #FFF7FD;
+    --LGshade4: #D9D2D7;
+
+    /* shades of purple pink */
+    --PPshade1: #BD399E;
+    --PPshade2: #7D2569;
+    --PPshade3: #3D1233;
+    --PPshade4: #E344BE;
+
+    /* shades of yellow */
+    --Yshade1: #BFBC17;
+    --Yshade2: #807E0F;
+    --Yshade3: #403F08;
+    --Yshade4: #E6E21C;
+
+    /* shades of orange */
+    --Oshade1: #BF8B32;
+    --Oshade2: #805D21;
+    --Oshade3: #402E11;
+    --Oshade4: #E6A73C;
+
+    /* shades of blue */
+    --Bshade1: #130B54;
+    --Bshade2: #341DE0;
+    --Bshade3: #2515A1;
+    --Bshade4: #1C107A;
+
+    /** Font Variables */
+}
