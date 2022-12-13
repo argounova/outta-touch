@@ -13,7 +13,7 @@ import './assets/css/navbar.css'
 const NavBar = (props) => {
     return (
         <Navbar className='custom-navbar' expand="lg">
-          <button className='home-button'>
+          <button className='home-button' onClick={props.homeclick}>
             <img className='nav-logo' src={logo}/>
           </button>
           <h1 className='slogan'>{props.slogan}</h1>

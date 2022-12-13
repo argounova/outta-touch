@@ -27,7 +27,7 @@
     height: 100%;
 }
 
-.nav-logo:active {
+.nav-logo:hover {
     height: 109%;
 }
 

@@ -48,8 +48,6 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/login' element={<Login />} />
           <Route
             path='dashboard/:userId'
             element={Auth.loggedIn() ? <Dashboard /> : <ProtectRoute />}
