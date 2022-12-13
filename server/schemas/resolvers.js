@@ -71,6 +71,7 @@ const resolvers = {
     createGroup: async (parent, { name, admin }, context) => {
       const groupData = await Group.create({
         name: name,
+        members: [admin],
         admins: [admin],
       });
       return groupData;
