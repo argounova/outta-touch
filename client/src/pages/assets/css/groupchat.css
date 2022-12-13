@@ -1,0 +1,40 @@
+.groupchat-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: var(--PPshade1);
+}
+
+.groupchat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-around; */
+    height: 70vh;
+}
+
+.groupchat-name {
+    display: flex;
+    width: 100%;
+    background-color: var(--PPshade2);
+}
+
+.groupchat-name h2 {
+    font-family: var(--chewy);
+}
+
+.message-button {
+    width: 100%;
+    font-family: var(--chewy);
+    background-color: var(--yellow);
+    color: var(--PPshade1);
+}
+
+.message-div {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 100%;
+}

@@ -1,0 +1,13 @@
+.photo-div {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.return-button {
+    width: 100%;
+    font-family: var(--chewy);
+    background-color: var(--PPshade2);
+    color: var(--yellow);
+}
