@@ -71,6 +71,7 @@ const resolvers = {
     createGroup: async (parent, { name, admin }, context) => {
       const groupData = await Group.create({
         name: name,
+        members: [admin],
         admins: [admin],
       });
       return groupData;
@@ -98,8 +99,11 @@ const resolvers = {
       if (groupData.members.find((element) => element.user === userId)) {
         return false;
       }
+      const userData = await User.findById(userId);
       groupData.members.push({ user: userId });
+      userData.groups.push(groupData.id);
       groupData.save();
+      userData.save();
       return true;
     },
     removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
@@ -112,8 +116,12 @@ const resolvers = {
       if (index < 0) {
         return false;
       }
+      const userData = await User.findById(userId);
       groupData.members.splice(index, 1);
+      let j = userData.groups.findIndex((element) => element === groupId);
+      if (!(j < 0)) userData.groups.splice(j, 1);
       groupData.save();
+      userData.save();
       return true;
     },
   },
