@@ -1,0 +1,28 @@
+.custom-navbar {
+    height: 10vh;
+    background-color: var(--Bshade1);
+}
+.home-button {
+    margin-left: 2%;
+    height: 100%;
+    width: inherit;
+    background-color: transparent;
+    border: none;
+    position: relative;
+}
+
+.home-button:hover {
+    background-color: transparent;
+}
+
+.home-button:active {
+    background-color: transparent;
+}
+
+.nav-logo {
+    height: 100%;
+}
+
+.slogan {
+    
+}

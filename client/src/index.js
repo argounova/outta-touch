@@ -4,7 +4,8 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-// main App css import
+// main App css import & bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 
