@@ -38,3 +38,19 @@
     color: var(--orange);
     text-shadow: var(--default-shadow);
 }
+
+/* media queries for smaller phones */
+
+/* noticeable breaking point */
+@media screen and (max-width: 472px) {
+    .slogan {
+        font-size: 180%;
+    }
+}
+
+/* Galaxy Fold */
+@media screen and (max-width: 281px) {
+    .slogan {
+        font-size: 140%;
+    }
+}
