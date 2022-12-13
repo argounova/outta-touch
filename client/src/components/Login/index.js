@@ -6,6 +6,8 @@ import { LOGIN_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
+import './assets/login.css';
+
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -41,13 +43,14 @@ const Login = (props) => {
   };
 
   return (
-    <main>
+    <>
       {data ? (
+        // TODO: Rework this message as we don't want to re-route back to the homepage on a successful login - we want to show them their dashboard
         <p>Successfully logged in! You may now head{' '}<Link to='/'>back to the hompage.</Link></p>
       ) : (
-        <div>
-          <h2>Login</h2>
-          <form onSubmit={handleFormSubmit}>
+        <>
+          <h2 className='login-heading'>Sign in below!</h2>
+          <form className='custom-form' onSubmit={handleFormSubmit}>
             <input
               placeholder='Your email'
               name='email'
@@ -62,14 +65,14 @@ const Login = (props) => {
               value={formState.password}
               onChange={handleChange}
             />
-            <button type='submit'>Login</button>
+            <button className='login-button' type='submit'>Login</button>
           </form>
-        </div>
+        </>
       )}
       {error && (
         <div>{error.message}</div>
       )}
-    </main>
+    </>
   );
 };
 

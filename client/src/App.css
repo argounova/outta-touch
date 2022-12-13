@@ -50,4 +50,9 @@
     0.4em -0.3em 0.1em var(--PPshade4);
 
     --simple-shadow: 0.1em 0.1em 0.1em black;
+
+    --alt-shadow: 0.1em 0.1em 0.1em black,
+    0.2em 0.5em 0.1em var(--Oshade4),
+    -0.3em 0.1em 0.1em var(--PPshade4),
+    0.4em -0.3em 0.1em var(--Bshade3);
 }
