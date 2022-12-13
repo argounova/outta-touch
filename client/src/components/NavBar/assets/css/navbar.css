@@ -27,7 +27,8 @@
     height: 100%;
 }
 
-.nav-logo:hover {
+/** I'm electing to do active pseudo classes rather than hover since this is primarily a mobile application (hover effects get stuck in limbo on touch screen devices) */
+.nav-logo:active {
     height: 109%;
 }
 
