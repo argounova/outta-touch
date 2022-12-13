@@ -116,8 +116,12 @@ const resolvers = {
       if (index < 0) {
         return false;
       }
+      const userData = await User.findById(userId);
       groupData.members.splice(index, 1);
+      let j = userData.groups.findIndex((element) => element === groupId);
+      if (!(j < 0)) userData.groups.splice(j, 1);
       groupData.save();
+      userData.save();
       return true;
     },
   },
