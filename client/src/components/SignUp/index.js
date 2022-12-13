@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -44,10 +43,7 @@ const Signup = () => {
 
   return (
     <>
-      {data ? (
-        // TODO: Rework this message as we don't want to re-route back to the homepage on a successful login - we want to show them their dashboard
-        <p variant='subtitle1'>Successfully created an account. You may now head{' '}<Link to='/'>back to the hompage.</Link></p>
-      ) : (
+      {data ? window.location.replace('/dashboard/:userId') : (
         <>
           <h2 className='signup-heading'>Sign Up Below!</h2>
           <form className='custom-form' onSubmit={handleFormSubmit}>
@@ -61,7 +57,7 @@ const Signup = () => {
             <input
               placeholder='Email'
               name='email'
-              type='text'
+              type='email'
               value={formState.email}
               onChange={handleChange}
             />
