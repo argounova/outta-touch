@@ -15,6 +15,8 @@ const typeDefs = gql`
     updated: Boolean
   }
 
+  scalar Date
+
   type Group {
     _id: ID
     name: String
