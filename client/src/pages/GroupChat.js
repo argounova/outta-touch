@@ -41,7 +41,7 @@ const GroupChat = () => {
         <header>
             <NavBar photosClick={photosClick}/>
             {/* TODO: These links will appear in the NavBar and should be able to be deleted from here */}
-            <Link to='/'>Logout</Link>
+            <Link to='/' onClick={AuthService.logout}>Logout</Link>
             <Link to='/Dashboard'>Dashboard</Link>
         </header>
         <main className='groupchat-main'>
