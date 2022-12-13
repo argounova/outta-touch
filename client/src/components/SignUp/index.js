@@ -6,6 +6,8 @@ import { ADD_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
+import './assets/css/signup.css'
+
 const Signup = () => {
 
   const [formState, setFormState] = useState({
@@ -41,13 +43,14 @@ const Signup = () => {
   };
 
   return (
-    <main>
+    <>
       {data ? (
+        // TODO: Rework this message as we don't want to re-route back to the homepage on a successful login - we want to show them their dashboard
         <p variant='subtitle1'>Successfully created an account. You may now head{' '}<Link to='/'>back to the hompage.</Link></p>
       ) : (
-        <div>
-          <h2>Sign Up</h2>
-          <form onSubmit={handleFormSubmit}>
+        <>
+          <h2 className='signup-heading'>Sign Up Below!</h2>
+          <form className='custom-form' onSubmit={handleFormSubmit}>
             <input
               placeholder='Username'
               name='username'
@@ -69,16 +72,16 @@ const Signup = () => {
               value={formState.password}
               onChange={handleChange}
             />
-            <button type='submit'>Sign Up</button>
+            <button className='signup-button' type='submit'>Sign Up</button>
           </form>
-        </div>
+        </>
       )}
       {error && (
         <div>
           {error.message}
         </div>
       )}
-    </main>
+    </>
   );
 };
 

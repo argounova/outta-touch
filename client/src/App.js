@@ -16,8 +16,6 @@ import Dashboard from './pages/Dashboard';
 
 /// Components ///
 import ProtectRoute from './components/ProtectRoute';
-import Signup from './components/SignUp';
-import Login from './components/Login';
 
 import './App.css';
 

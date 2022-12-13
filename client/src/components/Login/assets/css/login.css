@@ -1,0 +1,31 @@
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    justify-content: space-between;
+}
+
+.custom-form input {
+    border: 3px solid var(--blue);
+    border-radius: 1rem;
+    text-align: center;
+    height: 20%;
+    width: 150%;
+    align-self: center;
+}
+
+.login-button {
+    font-family: var(--chewy);
+    font-size: 225%;
+    color: var(--yellow);
+    text-shadow: var(--simple-shadow);
+    background-color: transparent;
+    border: none;
+}
+
+.login-heading {
+    font-family: var(--chewy);
+    font-size: 400%;
+    color: var(--yellow);
+    text-shadow: var(--alt-shadow);
+}
