@@ -24,5 +24,12 @@
 }
 
 .slogan {
-    
+    font-size: 250%;
+    margin-right: 2%;
+    font-family: var(--chewy);
+    color: var(--orange);
+    text-shadow: 0.1em 0.1em 0.1em black,
+    0.2em 0.5em 0.1em var(--Yshade4),
+    -0.3em 0.1em 0.1em var(--LGshade2),
+    0.4em -0.3em 0.1em var(--PPshade4);
 }
