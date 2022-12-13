@@ -9,15 +9,8 @@ const groupSchema = new Schema(
     },
     members: [
       {
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-        },
-        // TODO: make sure every group always has at least one admin
-        isAdmin: {
-          type: Boolean,
-          default: () => false,
-        },
+        type: Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
     admins: [

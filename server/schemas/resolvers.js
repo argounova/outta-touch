@@ -68,26 +68,53 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addGroupMember: async (parent, { userId, groupId }, context) => {
+    createGroup: async (parent, { name, admin }, context) => {
+      const groupData = await Group.create({
+        name: name,
+        admins: [admin],
+      });
+      return groupData;
+    },
+    updateGroup: async (parent, { groupId, name, admin }, context) => {
       const groupData = await Group.findById(groupId);
+      let isAdmin = groupData.admins.find((element) => element === admin);
+      if (!isAdmin) return;
+      groupData.name = name;
+      groupData.save();
+      return groupData;
+    },
+    // TODO: Delete group from all users' groups array
+    deleteGroup: async (parent, { groupId, admin }, context) => {
+      const groupData = await Group.findById(groupId);
+      let isAdmin = groupData.admins.find((element) => element === admin);
+      if (!isAdmin) return;
+      const groupDelete = await Group.findByIdAndDelete(groupId);
+      return groupDelete;
+    },
+    addGroupMember: async (parent, { userId, groupId, admin }, context) => {
+      const groupData = await Group.findById(groupId);
+      let isAdmin = groupData.admins.find((element) => element === admin);
+      if (!isAdmin) return;
       if (groupData.members.find((element) => element.user === userId)) {
-        return;
+        return false;
       }
       groupData.members.push({ user: userId });
       groupData.save();
-      return;
+      return true;
     },
-    removeGroupMember: async (parent, { userId, groupId }, context) => {
+    removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
+      let isAdmin = groupData.admins.find((element) => element === admin);
+      if (!isAdmin) return;
       let index = groupData.members.findIndex(
         (element) => element.user === userId
       );
-      if (index === -1) {
-        return;
+      if (index < 0) {
+        return false;
       }
       groupData.members.splice(index, 1);
       groupData.save();
-      return;
+      return true;
     },
   },
 };
