@@ -1,11 +1,15 @@
 .custom-navbar {
+    width: 100vw;
     height: 10vh;
     background-color: var(--Bshade1);
+    display: flex;
+    flex-direction: row;
+    /* !Over-riding bootstraps Navbar settings */
+    justify-content: space-between!important;
 }
 .home-button {
     margin-left: 2%;
     height: 100%;
-    width: inherit;
     background-color: transparent;
     border: none;
     position: relative;
@@ -23,13 +27,14 @@
     height: 100%;
 }
 
+.nav-logo:active {
+    height: 109%;
+}
+
 .slogan {
     font-size: 250%;
     margin-right: 2%;
     font-family: var(--chewy);
     color: var(--orange);
-    text-shadow: 0.1em 0.1em 0.1em black,
-    0.2em 0.5em 0.1em var(--Yshade4),
-    -0.3em 0.1em 0.1em var(--LGshade2),
-    0.4em -0.3em 0.1em var(--PPshade4);
+    text-shadow: var(--default-shadow);
 }

@@ -42,4 +42,10 @@
 
     /** Font Variables */
     --chewy: 'Chewy', cursive;
+
+    /** effect variables */
+    --default-shadow: 0.1em 0.1em 0.1em black,
+    0.2em 0.5em 0.1em var(--Yshade4),
+    -0.3em 0.1em 0.1em var(--LGshade2),
+    0.4em -0.3em 0.1em var(--PPshade4);
 }

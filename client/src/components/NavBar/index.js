@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // bootstrap components
-import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 
 // import home btn image
 import logo from './assets/img/HomeButtonImage.png';
@@ -26,7 +24,7 @@ const NavBar = (props) => {
   
   export default NavBar;
 
-//   TODO: Show this on Dashboard page (needs styling) - props.navToggle
+//   TODO: Show this on Dashboard page (needs styling) - use props.navToggle and ditch props.slogan
 
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
@@ -38,7 +36,7 @@ const NavBar = (props) => {
 // </Nav>
 // </Navbar.Collapse>
 
-// TODO: Show this on Group Chat page (needs styling) - props.navToggle
+// TODO: Show this on Group Chat page (needs styling) - use props.navToggle and ditch props.slogan
 
 // import Nav from 'react-bootstrap/Nav';
 // import Navbar from 'react-bootstrap/Navbar';
