@@ -71,15 +71,13 @@ const resolvers = {
     createGroup: async (parent, { name, admin }, context) => {
       const groupData = await Group.create({
         name: name,
-        admins: [admin.user.id],
+        admins: [admin],
       });
       return groupData;
     },
     updateGroup: async (parent, { groupId, name, admin }, context) => {
       const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find(
-        (element) => element === admin.user.id
-      );
+      let isAdmin = groupData.admins.find((element) => element === admin);
       if (!isAdmin) return;
       groupData.name = name;
       groupData.save();
@@ -88,18 +86,14 @@ const resolvers = {
     // TODO: Delete group from all users' groups array
     deleteGroup: async (parent, { groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find(
-        (element) => element === admin.user.id
-      );
+      let isAdmin = groupData.admins.find((element) => element === admin);
       if (!isAdmin) return;
       const groupDelete = await Group.findByIdAndDelete(groupId);
       return groupDelete;
     },
     addGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find(
-        (element) => element === admin.user.id
-      );
+      let isAdmin = groupData.admins.find((element) => element === admin);
       if (!isAdmin) return;
       if (groupData.members.find((element) => element.user === userId)) {
         return false;
@@ -110,9 +104,7 @@ const resolvers = {
     },
     removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find(
-        (element) => element === admin.user.id
-      );
+      let isAdmin = groupData.admins.find((element) => element === admin);
       if (!isAdmin) return;
       let index = groupData.members.findIndex(
         (element) => element.user === userId
