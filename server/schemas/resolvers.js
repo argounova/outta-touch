@@ -70,9 +70,12 @@ const resolvers = {
     },
     createGroup: async (parent, { name, admin }, context) => {
       const groupData = await Group.create({ name: name, admins: [admin] });
-      return groupData.id;
+      return groupData;
     },
-    updateGroup: async () => {},
+    updateGroup: async (parent, { groupId, name }, context) => {
+      const groupData = await Group.findByIdAndUpdate(groupId, { name: name });
+      return groupData;
+    },
     deleteGroup: async () => {},
     addGroupMember: async (parent, { userId, groupId }, context) => {
       const groupData = await Group.findById(groupId);
