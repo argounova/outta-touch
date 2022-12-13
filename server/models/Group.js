@@ -12,6 +12,7 @@ const groupSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: "User",
         },
+        // TODO: make sure every group always has at least one admin
         isAdmin: {
           type: Boolean,
           default: () => false,
