@@ -1,7 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Group } = require("../models");
 const { signToken } = require("../utils/auth");
-import { GraphQLScalarType, Kind } from "graphql";
+const { GraphQLScalarType, Kind } = require("graphql");
 
 const dateScalar = new GraphQLScalarType({
   name: "Date",
