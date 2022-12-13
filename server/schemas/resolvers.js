@@ -68,14 +68,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    createGroup: async (parent, { name, admin }, context) => {
+      const groupData = await Group.create({ name: name, admins: [admin] });
+      return groupData.id;
+    },
+    updateGroup: async () => {},
+    deleteGroup: async () => {},
     addGroupMember: async (parent, { userId, groupId }, context) => {
       const groupData = await Group.findById(groupId);
       if (groupData.members.find((element) => element.user === userId)) {
-        return;
+        return false;
       }
       groupData.members.push({ user: userId });
       groupData.save();
-      return;
+      return true;
     },
     removeGroupMember: async (parent, { userId, groupId }, context) => {
       const groupData = await Group.findById(groupId);
@@ -83,11 +89,11 @@ const resolvers = {
         (element) => element.user === userId
       );
       if (index === -1) {
-        return;
+        return false;
       }
       groupData.members.splice(index, 1);
       groupData.save();
-      return;
+      return true;
     },
   },
 };
