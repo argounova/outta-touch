@@ -108,7 +108,7 @@ const resolvers = {
       groupData.save();
       return true;
     },
-    removeGroupMember: async (parent, { userId, groupId }, context) => {
+    removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
       let isAdmin = groupData.admins.find(
         (element) => element === admin.user.id
@@ -117,7 +117,7 @@ const resolvers = {
       let index = groupData.members.findIndex(
         (element) => element.user === userId
       );
-      if (index === -1) {
+      if (index < 0) {
         return false;
       }
       groupData.members.splice(index, 1);
