@@ -5,11 +5,20 @@ import AuthService from '../utils/auth';
 
 // components
 import NavBar from '../components/NavBar';
+import Photos from '../components/Photos';
 
 // import css file
 import './assets/css/groupchat.css';
 
 const GroupChat = () => {
+
+    const setAll = (isFalse) => {
+        setShowMainContent(isFalse);
+        setShowPhotos(isFalse);
+    }
+
+    const [showMainContent, setShowMainContent] = useState(true);
+    const [showPhotos, setShowPhotos] = useState(false);
 
     const logoutClick = () => {
 
@@ -23,19 +32,18 @@ const GroupChat = () => {
 
     }
 
+     const photosClick = () => {
+        setAll(false);
+        setShowPhotos(true);
+    }
+
     const MainContent = () => {
         return (
             <>
-            
+            <div className='message-div'>
+                {/* TODO: Render messages in real time via subscriptions */}
+            </div>
             <button className='message-button'>Send Message</button>
-            </>
-        )
-    }
-
-    const Photos = () => {
-        return (
-            <>
-
             </>
         )
     }
@@ -43,11 +51,11 @@ const GroupChat = () => {
     return (
         <>
         <header>
-            <NavBar />
+            <NavBar dashboardClick={dashboardClick} photosClick={photosClick}/>
         </header>
         <main className='groupchat-main'>
             <section className='groupchat-container'>
-                <div>
+                <div className='groupchat-name'>
                     {/* TODO: Add dynamic group name */}
                     <h2>Group Name</h2>
                 </div>
