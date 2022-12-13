@@ -76,7 +76,9 @@ const resolvers = {
       const groupData = await Group.findByIdAndUpdate(groupId, { name: name });
       return groupData;
     },
-    deleteGroup: async () => {},
+    deleteGroup: async (parent, { groupId }, context) => {
+      const groupData = await Group.findByIdAndDelete(groupId);
+    },
     addGroupMember: async (parent, { userId, groupId }, context) => {
       const groupData = await Group.findById(groupId);
       if (groupData.members.find((element) => element.user === userId)) {
