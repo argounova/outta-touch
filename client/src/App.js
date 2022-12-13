@@ -10,14 +10,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Auth from './utils/auth';
 
-/// IMPORT PAGES ///
+/// Pages ///
 import Landing from './pages/Landing';
-import Signup from './components/SignUp';
-import Login from './components/Login';
 import Dashboard from './pages/Dashboard';
 
-/// IMPORT COMPONENTS ///
+/// Components ///
 import ProtectRoute from './components/ProtectRoute';
+import Signup from './components/SignUp';
+import Login from './components/Login';
 
 import './App.css';
 

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const Landing = () => {
   return (
     <main>
+      <NavBar />
       <Link to='/signup' style={{ textDecoration: 'none' }}>
-        <h1>Sign Up now</h1>
+        <h1>Sign Up</h1>
       </Link>
       <Link to='/login' style={{ textDecoration: 'none' }}>
-        <h1>Login now</h1>
+        <h1>Log in</h1>
       </Link>
     </main>
   )
