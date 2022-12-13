@@ -6,7 +6,7 @@ import { LOGIN_USER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-import './assets/login.css';
+import './assets/css/login.css';
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -49,7 +49,7 @@ const Login = (props) => {
         <p>Successfully logged in! You may now head{' '}<Link to='/'>back to the hompage.</Link></p>
       ) : (
         <>
-          <h2 className='login-heading'>Log in below!</h2>
+          <h2 className='login-heading'>Log In Below!</h2>
           <form className='custom-form' onSubmit={handleFormSubmit}>
             <input
               placeholder='Email'

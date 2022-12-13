@@ -1,0 +1,15 @@
+.signup-button {
+    font-family: var(--chewy);
+    font-size: 225%;
+    color: var(--yellow);
+    text-shadow: var(--simple-shadow);
+    background-color: transparent;
+    border: none;
+}
+
+.signup-heading {
+    font-family: var(--chewy);
+    font-size: 400%;
+    color: var(--yellow);
+    text-shadow: var(--alt-shadow);
+}
