@@ -8,23 +8,19 @@ const typeDefs = gql`
     groups: [Group]
   }
 
+  type Message {
+    message: String
+    user: User
+    timestamp: Date
+    updated: Boolean
+  }
+
   type Group {
     _id: ID
     name: String
-    members: [
-      {
-        user: User
-        isAdmin: Boolean
-      }
-    ]
-    messages: [
-      {
-        message: String
-        user: User
-        timestamp: Date
-        updated: Boolean
-      }
-    ]
+    members: [User]
+    admins: [User]
+    messages: [Message]
   }
 
   type Auth {
@@ -40,8 +36,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGroupMember(userId: ID!, groupId: ID!)
-    removeGroupMember(userId: ID!, groupId: ID!)
+    addGroupMember(userId: ID!, groupId: ID!): Boolean
+    removeGroupMember(userId: ID!, groupId: ID!): Boolean
   }
 `;
 
