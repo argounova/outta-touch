@@ -16,6 +16,10 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    group: async (parent, { groupId }, context) => {
+      const groupData = await Group.findById(groupId);
+      return groupData;
+    },
   },
 
   Mutation: {
@@ -42,6 +46,27 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    addGroupMember: async (parent, { userId, groupId }, context) => {
+      const groupData = await Group.findById(groupId);
+      if (groupData.members.find((element) => element.user === userId)) {
+        return;
+      }
+      groupData.members.push({ user: userId });
+      groupData.save();
+      return;
+    },
+    removeGroupMember: async (parent, { userId, groupId }, context) => {
+      const groupData = await Group.findById(groupId);
+      let index = groupData.members.findIndex(
+        (element) => element.user === userId
+      );
+      if (index === -1) {
+        return;
+      }
+      groupData.members.splice(index, 1);
+      groupData.save();
+      return;
     },
   },
 };
