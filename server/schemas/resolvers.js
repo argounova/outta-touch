@@ -99,8 +99,11 @@ const resolvers = {
       if (groupData.members.find((element) => element.user === userId)) {
         return false;
       }
+      const userData = await User.findById(userId);
       groupData.members.push({ user: userId });
+      userData.groups.push(groupData.id);
       groupData.save();
+      userData.save();
       return true;
     },
     removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
