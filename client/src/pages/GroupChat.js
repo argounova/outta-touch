@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../utils/auth';
 
-
 // components
 import NavBar from '../components/NavBar';
 import Photos from '../components/Photos';
@@ -20,19 +19,7 @@ const GroupChat = () => {
     const [showMainContent, setShowMainContent] = useState(true);
     const [showPhotos, setShowPhotos] = useState(false);
 
-    const logoutClick = () => {
-
-    }
-
-    const dashboardClick = () => {
-
-    }
-
-    const sendMessageClick = () => {
-
-    }
-
-     const photosClick = () => {
+    const photosClick = () => {
         setAll(false);
         setShowPhotos(true);
     }
@@ -43,6 +30,7 @@ const GroupChat = () => {
             <div className='message-div'>
                 {/* TODO: Render messages in real time via subscriptions */}
             </div>
+            {/* TODO: Add button send message functionality */}
             <button className='message-button'>Send Message</button>
             </>
         )
@@ -51,7 +39,10 @@ const GroupChat = () => {
     return (
         <>
         <header>
-            <NavBar dashboardClick={dashboardClick} photosClick={photosClick}/>
+            <NavBar photosClick={photosClick}/>
+            {/* TODO: These links will appear in the NavBar and should be able to be deleted from here */}
+            <Link to='/'>Logout</Link>
+            <Link to='/Dashboard'>Dashboard</Link>
         </header>
         <main className='groupchat-main'>
             <section className='groupchat-container'>
