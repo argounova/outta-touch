@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const messageSchema = require("./Message");
 
 const groupSchema = new Schema(
   {
@@ -19,27 +20,13 @@ const groupSchema = new Schema(
         },
       },
     ],
-    messages: [
+    admins: [
       {
-        message: {
-          type: String,
-          required: true,
-        },
-        user: {
-          type: Schema.Types.ObjectId,
-          required: true,
-          ref: "User",
-        },
-        timestamp: {
-          type: Date,
-          default: () => Date.now(),
-        },
-        updated: {
-          type: Boolean,
-          default: () => false,
-        },
+        type: Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
+    messages: [messageSchema],
   },
   {
     toJSON: {
