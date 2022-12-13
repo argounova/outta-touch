@@ -15,15 +15,24 @@ const GroupChat = () => {
 
     }
 
-    const photosClick = () => {
-
-    }
-
     const dashboardClick = () => {
 
     }
 
+    const sendMessageClick = () => {
+
+    }
+
     const MainContent = () => {
+        return (
+            <>
+            
+            <button className='message-button'>Send Message</button>
+            </>
+        )
+    }
+
+    const Photos = () => {
         return (
             <>
 
@@ -36,9 +45,14 @@ const GroupChat = () => {
         <header>
             <NavBar />
         </header>
-        <main>
-            <section>
-
+        <main className='groupchat-main'>
+            <section className='groupchat-container'>
+                <div>
+                    {/* TODO: Add dynamic group name */}
+                    <h2>Group Name</h2>
+                </div>
+                {showMainContent ? <MainContent /> : null}
+                {showPhotos ? <Photos /> : null}
             </section>
         </main>
         </>
