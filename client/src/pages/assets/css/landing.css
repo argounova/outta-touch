@@ -1,0 +1,29 @@
+.landing-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: var(--PPshade1);
+}
+
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 70vh;
+}
+
+.landing-text {
+    text-decoration: none;
+    font-family: var(--chewy);
+    font-size: 250%;
+    color: var(--yellow);
+    text-shadow: var(--simple-shadow);
+}
+
+.landing-text:hover {
+    color: var(--yellow);
+    font-size: 275%;
+}
