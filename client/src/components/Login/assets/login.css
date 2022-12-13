@@ -5,6 +5,15 @@
     justify-content: space-between;
 }
 
+.custom-form input {
+    border: 3px solid var(--blue);
+    border-radius: 1rem;
+    text-align: center;
+    height: 20%;
+    width: 150%;
+    align-self: center;
+}
+
 .login-button {
     font-family: var(--chewy);
     font-size: 225%;

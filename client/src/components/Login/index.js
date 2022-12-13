@@ -49,17 +49,17 @@ const Login = (props) => {
         <p>Successfully logged in! You may now head{' '}<Link to='/'>back to the hompage.</Link></p>
       ) : (
         <>
-          <h2 className='login-heading'>Sign in below!</h2>
+          <h2 className='login-heading'>Log in below!</h2>
           <form className='custom-form' onSubmit={handleFormSubmit}>
             <input
-              placeholder='Your email'
+              placeholder='Email'
               name='email'
               type='email'
               value={formState.email}
               onChange={handleChange}
             />
             <input
-              placeholder='Your password'
+              placeholder='Password'
               name='password'
               type='password'
               value={formState.password}
