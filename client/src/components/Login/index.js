@@ -43,11 +43,6 @@ const Login = (props) => {
   };
 
   return (
-    <>
-      {data ? (
-        // TODO: Rework this message as we don't want to re-route back to the homepage on a successful login - we want to show them their dashboard
-        <p>Successfully logged in! You may now head{' '}<Link to='/'>back to the hompage.</Link></p>
-      ) : (
         <>
           <h2 className='login-heading'>Log In Below!</h2>
           <form className='custom-form' onSubmit={handleFormSubmit}>
@@ -67,8 +62,6 @@ const Login = (props) => {
             />
             <button className='login-button' type='submit'>Login</button>
           </form>
-        </>
-      )}
       {error && (
         <div>{error.message}</div>
       )}
