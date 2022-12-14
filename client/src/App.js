@@ -47,7 +47,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route
-            path='/dashboard/:userId'
+            path='/dashboard'
             element={Auth.loggedIn() ? <Dashboard /> : <ProtectRoute />}
           />
         </Routes>
