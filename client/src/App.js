@@ -13,6 +13,7 @@ import Auth from './utils/auth';
 /// Pages ///
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
+import Chat from './pages/Chat';
 
 /// Components ///
 import ProtectRoute from './components/ProtectRoute';
@@ -49,6 +50,10 @@ function App() {
           <Route
             path='/dashboard/:userId'
             element={Auth.loggedIn() ? <Dashboard /> : <ProtectRoute />}
+          />
+          <Route
+          path='/chat'
+          element={Auth.loggedIn() ? <Chat /> : <ProtectRoute />}
           />
         </Routes>
       </Router>
