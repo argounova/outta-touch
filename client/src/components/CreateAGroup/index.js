@@ -41,7 +41,7 @@ const CreateAGroup = () => {
                     admin: userData.data._id,
                 },
             });
-            Auth.loggedIn(data.login.token);
+            Auth.loggedIn();
         } catch (error) {
             console.log(error);
         }
