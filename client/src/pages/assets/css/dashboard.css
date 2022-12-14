@@ -16,6 +16,12 @@
     text-align: right;
 }
 
+.navbar-nav {
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 2%;
+}
+
 .show {
     padding-right: 2%;
 }
@@ -27,9 +33,10 @@
 .dashboard-main {
     min-height: 100vh;
     padding: 2%;
-    background-color: var(--yellow);
+    background-color: var(--PPshade1);
 }
 
 .custom-nav-icons {
     height: 35px;
+    width: max-content;
 }
