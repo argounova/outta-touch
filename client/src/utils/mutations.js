@@ -44,3 +44,27 @@ export const LOGIN_USER = gql`
   }
 }
 `;
+
+export const CREATE_GROUP = gql`
+mutation createGroup($name: String!, $admin: ID!) {
+  createGroup(name: $name, admin: $admin) {
+    _id
+    admins {
+      email
+      _id
+      username
+    }
+    members {
+      _id
+      email
+      username
+    }
+    messages {
+      message
+      timestamp
+      updated
+    }
+    name
+  }
+}
+`

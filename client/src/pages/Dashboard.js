@@ -18,6 +18,7 @@ import hamburgerIcon from './assets/img/HamburgerIcon.png';
 import logOutIcon from './assets/img/LogOut.png';
 
 const Dashboard = () => {
+  // TODO: Additional styling needed for this page
 
   // TODO: Find a way to toggle this class when dropdown is active to be able to have a background, it is currently set to white, will want to change to an rgba transparent background of the current nav background color
   const toggleClass = 'toggle-container';
