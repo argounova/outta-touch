@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 
+import Auth from "../../utils/auth";
+
 // CSS
 import './assets/css/createagroup.css';
 
+// import mutations
+import { CREATE_GROUP } from '../../utils/mutations'
+
 const CreateAGroup = () => {
+
+    const userData = Auth.getUser();
+    const userId = userData.data._id;
+
+    console.log(userId);
+
     const [formState, setFormState] = useState({ groupName: '', password: '' });
-    const [createGroup, { error, data }] = useMutation(CREATE_GROUP);
+    const [createGroup, { error }] = useMutation(CREATE_GROUP);
 
     /// HANDLE CHANGE ///
     const handleChange = (e) => {
@@ -24,7 +35,11 @@ const CreateAGroup = () => {
 
     try {
       const { data } = await createGroup({
-        variables: { ...formState },
+        variables: { 
+            name: {...formState.groupName},
+            admin: {...userId},
+            
+        },
       });
 
     } catch (error) {
