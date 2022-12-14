@@ -13,13 +13,15 @@
 }
 
 .navbar-nav {
-    text-align: right;
-}
-
-.navbar-nav {
     width: 100%;
     justify-content: flex-end;
+    align-items: flex-end;
     padding-right: 2%;
+    padding-left: 2%;
+}
+
+.toggle-container {
+    background-color: white;
 }
 
 .show {
@@ -38,5 +40,11 @@
 
 .custom-nav-icons {
     height: 35px;
+    width: max-content;
+}
+
+.dashboard-logout {
+    border: none;
+    background-color: transparent;
     width: max-content;
 }
