@@ -7,9 +7,9 @@ import NavBar from '../components/NavBar';
 import Photos from '../components/Photos';
 
 // import css file
-import './assets/css/groupchat.css';
+import './assets/css/chat.css';
 
-const GroupChat = () => {
+const Chat = () => {
 
     const setAll = (isFalse) => {
         setShowMainContent(isFalse);
@@ -41,14 +41,14 @@ const GroupChat = () => {
         <header>
             <NavBar photosClick={photosClick}/>
             {/* TODO: These links will appear in the NavBar and should be able to be deleted from here */}
-            <Link to='/' onClick={AuthService.logout}>Logout</Link>
-            <Link to='/Dashboard'>Dashboard</Link>
+            {/* <Link to='/' onClick={AuthService.logout}>Logout</Link> */}
+            {/* <Link to='/Dashboard'>Dashboard</Link> */}
         </header>
-        <main className='groupchat-main'>
-            <section className='groupchat-container'>
-                <div className='groupchat-name'>
-                    {/* TODO: Add dynamic group name */}
-                    <h2>Group Name</h2>
+        <main className='chat-main'>
+            <section className='chat-container'>
+                <div className='chat-name'>
+                    {/* TODO: Add dynamic chat name */}
+                    <h2>Chat Name</h2>
                 </div>
                 {showMainContent ? <MainContent /> : null}
                 {showPhotos ? <Photos /> : null}
@@ -58,4 +58,4 @@ const GroupChat = () => {
     )
 }
 
-export default GroupChat;
+export default Chat;
