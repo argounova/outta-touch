@@ -50,6 +50,10 @@ function App() {
             path='/dashboard/:userId'
             element={Auth.loggedIn() ? <Dashboard /> : <ProtectRoute />}
           />
+          {/* <Route 
+          path='/chat/:userId/group/:groupId'
+          element={Auth.loggedIn() ? <GroupChatComponentHere /> : <ProtectRoute />}
+          /> */}
         </Routes>
       </Router>
     </ApolloProvider>
