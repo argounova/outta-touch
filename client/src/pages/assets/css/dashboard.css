@@ -36,6 +36,10 @@
     min-height: 100vh;
     padding: 2%;
     background-color: var(--PPshade1);
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: space-around;
 }
 
 .custom-nav-icons {

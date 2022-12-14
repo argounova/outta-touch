@@ -1,0 +1,7 @@
+.create-title {
+    font-family: var(--chewy);
+    text-shadow: var(--alt-shadow);
+    color: yellow;
+    align-self: center;
+    font-size: 400%;
+}
