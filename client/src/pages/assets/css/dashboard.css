@@ -1,4 +1,35 @@
 /* !CSS for nav toggle is in here since it is being rendered as a prop */
-.toggle-button {
-    color: white;
+
+/* used !important to override bootstraps toggle behavior */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+.toggle-icon {
+    height: 70px;
+}
+
+.navbar-nav {
+    text-align: right;
+}
+
+.show {
+    padding-right: 2%;
+}
+
+.collapsing {
+    padding-right: 2%;
+}
+
+.dashboard-main {
+    min-height: 100vh;
+    padding: 2%;
+    background-color: var(--yellow);
+}
+
+.custom-nav-icons {
+    height: 35px;
 }
