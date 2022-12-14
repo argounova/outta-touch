@@ -62,9 +62,10 @@ const Chat = () => {
             <Navbar.Collapse id="custom-collapse">
               <Nav className="me-auto">
                 <div className={showToggleClass ? toggleClass : null}>
-                  <button className='dashboard-logout' onClick={AuthService.logout}>
-                    <img className='custom-nav-icons' src={logOutIcon} />
-                  </button>
+                    <button onClick={photosClick}>PHOTOS</button>
+                    <button className='dashboard-logout' onClick={AuthService.logout}>
+                        <img className='custom-nav-icons' src={logOutIcon} />
+                    </button>
                 </div>
               </Nav>
             </Navbar.Collapse>
