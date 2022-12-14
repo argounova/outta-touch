@@ -4,7 +4,13 @@ import AuthService from '../utils/auth';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
+// components
 import NavBar from '../components/NavBar';
+import MyGroups from '../components/MyGroups';
+import CreateAGroup from '../components/CreateAGroup';
+import FindAGroup from '../components/FindAGroup';
+
+// css
 import './assets/css/dashboard.css';
 
 // get custom hamburger nav icon
@@ -22,10 +28,56 @@ const Dashboard = () => {
 
   // showEl ? setShowToggleClass(true) : setShowToggleClass(false);
 
+  // * useState to render diff components
+
+  const [showMainContent, setShowMainContent] = useState(true);
+  const [showMyGroups, setShowMyGroups] = useState(false);
+  const [showCreateAGroup, setShowCreateAGroup] = useState(false);
+  const [showFindAGroup, setShowFindAGroup] = useState(false);
+
+  // set all to false when rendering diff components
+  const setAll = (isFalse) => {
+    setShowMainContent(isFalse);
+    setShowMyGroups(isFalse);
+    setShowCreateAGroup(isFalse);
+    setShowFindAGroup(isFalse);
+  }
+
+  // click handlers
+  const myGroupsClick = () => {
+    setAll(false);
+    setShowMyGroups(true);
+  }
+
+  const createAGroupClick = () => {
+    setAll(false);
+    setShowCreateAGroup(true);
+  }
+
+  const findAGroupClick = () => {
+    setAll(false);
+    setShowFindAGroup(true);
+  }
+
+  const homeClick = () => {
+    setAll(false);
+    setShowMainContent(true);
+  }
+
+  const MainContent = () => {
+    return (
+      <>
+        <button onClick={myGroupsClick}>My Group</button>
+        <button onClick={createAGroupClick}>Create A Group</button>
+        <button onClick={findAGroupClick}>Find Group</button>
+      </>
+    )
+  }
+
   return (
     <>
       <header className='dashboard-header'>
-        <NavBar navToggle={
+        <NavBar homeclick={homeClick} navToggle={
           <>
             <Navbar.Toggle className='toggle-button' aria-controls="custom-collapse">
               <img className='toggle-icon' src={hamburgerIcon} />
@@ -43,9 +95,10 @@ const Dashboard = () => {
         } />
       </header>
       <main className='dashboard-main'>
-        <h2>My Group</h2>
-        <h2>Create A Group</h2>
-        <h2>Find Group</h2>
+        {showMainContent ? <MainContent /> : null}
+        {showCreateAGroup ? <CreateAGroup /> : null}
+        {showMyGroups ? <MyGroups /> : null}
+        {showFindAGroup ? <FindAGroup /> : null}
       </main>
     </>
   )
