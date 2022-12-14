@@ -5,13 +5,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 import NavBar from '../components/NavBar';
+import './assets/css/dashboard.css';
 
 const Dashboard = () => {
   return (
     <>
       <NavBar navToggle={
         <>
-          <Navbar.Toggle aria-controls="custom-collapse" />
+          <Navbar.Toggle className='toggle-button' aria-controls="custom-collapse">
+            X
+            </Navbar.Toggle>
           <Navbar.Collapse id="custom-collapse">
             <Nav className="me-auto">
               <Nav.Link href="/">Sign Out</Nav.Link>

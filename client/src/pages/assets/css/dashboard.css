@@ -1,0 +1,4 @@
+/* !CSS for nav toggle is in here since it is being rendered as a prop */
+.toggle-button {
+    color: white;
+}
