@@ -12,9 +12,10 @@ import { CREATE_GROUP } from '../../utils/mutations'
 const CreateAGroup = () => {
 
     const userData = Auth.getUser();
-    const userId = userData.data._id;
 
-    console.log(userId);
+    console.log(userData.data._id);
+
+    // const adminUserId = userData.data._id;
 
     const [formState, setFormState] = useState({ groupName: '', password: '' });
     const [createGroup, { error }] = useMutation(CREATE_GROUP);
@@ -30,28 +31,26 @@ const CreateAGroup = () => {
     };
 
     /// FORM SUBMISSION ///
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
 
-    try {
-      const { data } = await createGroup({
-        variables: { 
-            name: {...formState.groupName},
-            admin: {...userId},
-            
-        },
-      });
+        try {
+            const { data } = await createGroup({
+                variables: {
+                    name: formState.groupName,
+                    admin: userData.data._id,
+                },
+            });
+            Auth.loggedIn(data.login.token);
+        } catch (error) {
+            console.log(error);
+        }
 
-    } catch (error) {
-      console.log(error);
-    }
-
-    setFormState({
-      groupName: '',
-      password: '',
-    });
-  };
-
+        setFormState({
+            groupName: '',
+            password: '',
+        });
+    };
 
     return (
         <>
