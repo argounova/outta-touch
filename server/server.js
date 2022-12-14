@@ -1,13 +1,18 @@
 const express = require("express");
+const app = express();
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { authMiddleware } = require("./utils/auth");
+// Socket.io
+const http = require("http");
+const httpServer = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(httpServer);
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
-const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -39,5 +44,12 @@ const startApolloServer = async (typeDefs, resolvers) => {
     });
   });
 };
+
+// Socket.io listeners
+io.on("connection", (socket) => {
+  socket.on("group message", (msg) => {
+    io.emit("group message", msg);
+  });
+});
 
 startApolloServer(typeDefs, resolvers);
