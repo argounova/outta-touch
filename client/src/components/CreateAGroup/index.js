@@ -9,6 +9,9 @@ import './assets/css/createagroup.css';
 // import mutations
 import { CREATE_GROUP } from '../../utils/mutations'
 
+// import Sweet Alert Component for sweet alerts!!
+import Swal from 'sweetalert2';
+
 const CreateAGroup = () => {
 
     const userData = Auth.getUser();
@@ -40,6 +43,14 @@ const CreateAGroup = () => {
                 },
             });
             Auth.loggedIn();
+            if (data) {
+                Swal.fire({
+                    title: 'Way to NOT be Outta-Touch!',
+                    text: 'Your Group was created!',
+                    icon: 'success',
+                    confirmButtonText: "Yo, that's sick",
+                  })
+            }
         } catch (error) {
             console.log(error);
         }
