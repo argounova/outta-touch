@@ -9,11 +9,12 @@ import './assets/css/createagroup.css';
 // import mutations
 import { CREATE_GROUP } from '../../utils/mutations'
 
+// import Sweet Alert Component for sweet alerts!!
+import Swal from 'sweetalert2';
+
 const CreateAGroup = () => {
 
     const userData = Auth.getUser();
-
-    console.log(userData.data._id);
 
     // const adminUserId = userData.data._id;
 
@@ -42,6 +43,16 @@ const CreateAGroup = () => {
                 },
             });
             Auth.loggedIn();
+            if (data) {
+                // TODO: update styling for the alert to be consistent with app design
+                // * URL: https://sweetalert2.github.io/#configuration
+                Swal.fire({
+                    title: 'Way to NOT be Outta-Touch!',
+                    text: 'Your Group was created!',
+                    icon: 'success',
+                    confirmButtonText: "Yo, that's sick",
+                  })
+            }
         } catch (error) {
             console.log(error);
         }
@@ -54,8 +65,9 @@ const CreateAGroup = () => {
 
     return (
         <>
-            <h1 className='create-title'>Create A Group</h1>
-            <form className='custom-form' onSubmit={handleFormSubmit}>
+        <h1 className='create-title'>Create A Group</h1>
+        <section className='createGroup-form-container'>
+            <form className='createGroup-form' onSubmit={handleFormSubmit}>
                 <input
                     placeholder='Enter Group Name'
                     name='groupName'
@@ -75,6 +87,7 @@ const CreateAGroup = () => {
             {error && (
                 <div>{error.message}</div>
             )}
+        </section>
         </>
     )
 }

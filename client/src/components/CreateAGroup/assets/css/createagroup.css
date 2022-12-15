@@ -5,3 +5,32 @@
     align-self: center;
     font-size: 400%;
 }
+
+.createGroup-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+
+.createGroup-form input {
+    border: 3px solid var(--blue);
+    border-radius: 1rem;
+    text-align: center;
+    height: 10%;
+    width: 50%;
+    align-self: center;
+}
+
+.createGroup-form-container {
+    height: 50vh;
+}
+
+.create-button {
+    font-family: var(--chewy);
+    font-size: 225%;
+    color: var(--yellow);
+    text-shadow: var(--simple-shadow);
+    background-color: transparent;
+    border: none;
+}

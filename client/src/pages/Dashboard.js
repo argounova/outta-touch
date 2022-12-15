@@ -16,6 +16,9 @@ import './assets/css/dashboard.css';
 // get custom hamburger nav icon
 import hamburgerIcon from './assets/img/HamburgerIcon.png';
 import logOutIcon from './assets/img/LogOut.png';
+import createAGroupIcon from './assets/img/CreateAGroup.png';
+import findAGroupIcon from './assets/img/FindAGroup.png';
+import myGroupsIcon from './assets/img/MyGroups.png';
 
 const Dashboard = () => {
   // TODO: Additional styling needed for this page
@@ -67,11 +70,17 @@ const Dashboard = () => {
 
   const MainContent = () => {
     return (
-      <>
-        <button onClick={myGroupsClick}>My Group</button>
-        <button onClick={createAGroupClick}>Create A Group</button>
-        <button onClick={findAGroupClick}>Find Group</button>
-      </>
+      <section className='mainContent-section'>
+        <button id='paintSplatter1' className='dashboard-buttons' onClick={myGroupsClick}>
+          <img className='customDash-icon' src={myGroupsIcon} />
+        </button>
+        <button id='paintSplatter2' className='dashboard-buttons' onClick={createAGroupClick}>
+          <img className='customDash-icon' src={createAGroupIcon} />
+        </button>
+        <button id='paintSplatter3' className='dashboard-buttons' onClick={findAGroupClick}>
+          <img className='customDash-icon' src={findAGroupIcon} />
+        </button>
+      </section>
     )
   }
 
