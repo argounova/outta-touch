@@ -22,6 +22,25 @@ const MyGroups = () => {
             }
         });
 
+        // console.log(loading ? 'loading' : data.user.groups);
+
+        let groupIds = [];
+
+        function iterateGroupIds() {
+            if (loading) {
+                return 'Loading'
+            }
+            else {
+                for (let i = 0; i < data.user.groups.length; i++) {
+                groupIds.push(data.user.groups[i]._id)
+                }
+            }
+        }
+
+        iterateGroupIds();
+
+        console.log(groupIds);
+
     return (
         <>
             <h1 className="myGroups-title">{loading ? 'Loading' : `${data.user.username}'s Groups`}</h1>
