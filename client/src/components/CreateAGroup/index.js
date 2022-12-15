@@ -52,8 +52,9 @@ const CreateAGroup = () => {
 
     return (
         <>
-            <h1 className='create-title'>Create A Group</h1>
-            <form className='custom-form' onSubmit={handleFormSubmit}>
+        <h1 className='create-title'>Create A Group</h1>
+        <section className='createGroup-form-container'>
+            <form className='createGroup-form' onSubmit={handleFormSubmit}>
                 <input
                     placeholder='Enter Group Name'
                     name='groupName'
@@ -73,6 +74,7 @@ const CreateAGroup = () => {
             {error && (
                 <div>{error.message}</div>
             )}
+        </section>
         </>
     )
 }
