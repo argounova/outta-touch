@@ -13,8 +13,6 @@ const CreateAGroup = () => {
 
     const userData = Auth.getUser();
 
-    console.log(userData.data._id);
-
     // const adminUserId = userData.data._id;
 
     const [formState, setFormState] = useState({ groupName: '', password: '' });

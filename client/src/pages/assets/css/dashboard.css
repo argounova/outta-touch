@@ -1,5 +1,17 @@
 /* !CSS for nav toggle is in here since it is being rendered as a prop */
 
+/* Photo Credits
+------------------------------------------
+paintSplatter1:
+Photo by Zaksheuskaya: https://www.pexels.com/photo/pink-and-purple-wallpaper-1616403/
+------------------------------------------
+paintSplatter2:
+Photo by Scott Webb: https://www.pexels.com/photo/pink-and-blue-abstract-painting-5209241/
+------------------------------------------
+paintSplatter3:
+Photo by Zaksheuskaya: https://www.pexels.com/photo/teal-white-and-pink-paint-1561020/
+*/
+
 /* used !important to override bootstraps toggle behavior */
 .navbar-toggler:focus,
 .navbar-toggler:active,
@@ -51,4 +63,39 @@
     border: none;
     background-color: transparent;
     width: max-content;
+}
+
+.dashboard-buttons {
+    height: 300px;
+    width: 300px;
+    border-radius: 3rem;
+    border: 3px solid black;
+    margin: 1%;
+}
+
+.customDash-icon {
+    /* set width to 100% to allow it to take up as much space as it can within the button */
+    width: 100%;
+}
+
+#paintSplatter1 {
+    background-image: url('../img/paintSplatter1.jpg');
+    background-size: cover;
+}
+
+#paintSplatter2 {
+    background-image: url('../img/paintSplatter2.jpg');
+    background-size: cover;
+}
+
+#paintSplatter3 {
+    background-image: url('../img/paintSplatter3.jpg');
+    background-size: cover;
+}
+
+.mainContent-section {
+    display: flex;
+    flex-flow: row Wrap;
+    justify-content: space-around;
+    align-items: space-around;
 }
