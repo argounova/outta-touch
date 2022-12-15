@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // components
 import NavBar from '../components/NavBar';
@@ -39,12 +39,12 @@ const Landing = () => {
   const MainContent = () => {
     return (
       <>
-      <Link className='landing-text' onClick={loginClick}>
+      <button className='landing-button' onClick={loginClick}>
       Log In
-      </Link>
-      <Link className='landing-text' onClick={signupClick}>
+      </button>
+      <button className='landing-button' onClick={signupClick}>
       SignUp
-      </Link>
+      </button>
       </>
     )
 }

@@ -12,19 +12,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 70vh;
 }
 
-.landing-text {
+.landing-button {
     text-decoration: none;
     font-family: var(--chewy);
     font-size: 250%;
     color: var(--yellow);
     text-shadow: var(--simple-shadow);
+    height: 150px;
+    width: 350px;
+    border-radius: 3rem;
+    border: 3px solid black;
+    background: radial-gradient(circle, rgba(28,16,122,1) 0%, rgba(19,11,84,1) 100%);
 }
 
-.landing-text:hover {
+.landing-button:hover {
     color: var(--yellow);
-    font-size: 275%;
+    font-size: 255%;
+    box-shadow: 5px 3px 10px #000;
 }
