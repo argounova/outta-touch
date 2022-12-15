@@ -1,22 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './assets/css/photos.css';
+import { useNavigate } from "react-router-dom";
+import LiveChat from "../LiveChat";
 
 const Photos = () => {
-
   const navigate = useNavigate();
-
-  const returnClick = () => {
-    navigate('/chat', {replace: true});
-    setShowMainContent(true);
-  }
-
   return (
     <>
-    <div className='photo-div'>
-{/* TODO: Render photos in a grid as smaller images that once clicked expand to full screen */}
-    </div>
-    <button className='return-button' onClick={returnClick}>Return to Chat</button>
+      <div className='chat-name'>
+      {/* TODO: Add dynamic chat name */}
+          <h2>Chat Name</h2>
+      {/* TODO: Add logo button for photos */}
+          <button onClick={ () => navigate(<LiveChat/>) }>LIVE CHAT</button>
+      </div>
+      <div className='message-div'>
+      {/* TODO: Render messages in real time via subscriptions */}
+      </div>
+      {/* TODO: Add button send message functionality */}
+      <button className='message-button'>Upload Photo</button>
     </>
   )
 }

@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 // components
 import NavBar from '../components/NavBar';
 import Photos from '../components/Photos';
+import LiveChat from '../components/LiveChat';
 
 // css
 import './assets/css/chat.css';
@@ -25,9 +26,11 @@ const Chat = () => {
     const setAll = (isFalse) => {
         setShowMainContent(isFalse);
         setShowPhotos(isFalse);
+        setShowLiveChat(isFalse);
     }
 
     const [showMainContent, setShowMainContent] = useState(true);
+    const [showLiveChat, setShowLiveChat] = useState(true);
     const [showPhotos, setShowPhotos] = useState(false);
 
     const photosClick = () => {
@@ -35,22 +38,21 @@ const Chat = () => {
         setShowPhotos(true);
     }
 
+    const liveChatClick = () => {
+      setAll(false);
+      setShowLiveChat(true);
+    }
+
     const homeClick = () => {
         navigate('/dashboard', {replace: true});
     }
 
-    const MainContent = () => {
-        return (
-            <>
-            <div className='message-div'>
-                {/* TODO: Render messages in real time via subscriptions */}
-            </div>
-            {/* TODO: Add button send message functionality */}
-            <button className='message-button'>Send Message</button>
-            </>
-        )
-    }
+    // const liveChatClick = () => {
+    //     setAll(false);
+    //     setShowLiveChat(true);
+    // }
 
+    const MainContent = () => {
     return (
         <>
         <header className='dashboard-header'>
@@ -62,7 +64,6 @@ const Chat = () => {
             <Navbar.Collapse id="custom-collapse">
               <Nav className="me-auto">
                 <div className={showToggleClass ? toggleClass : null}>
-                    <button onClick={photosClick}>PHOTOS</button>
                     <button className='dashboard-logout' onClick={AuthService.logout}>
                         <img className='custom-nav-icons' src={logOutIcon} />
                     </button>
@@ -74,16 +75,13 @@ const Chat = () => {
         </header>
         <main className='chat-main'>
             <section className='chat-container'>
-                <div className='chat-name'>
-                    {/* TODO: Add dynamic chat name */}
-                    <h2>Chat Name</h2>
-                </div>
-                {showMainContent ? <MainContent /> : null}
-                {showPhotos ? <Photos /> : null}
+            {showLiveChat ? <Chat /> : null}
+            {showPhotos ? <Photos /> : null}
             </section>
         </main>
         </>
     )
+  }
 }
 
 export default Chat;
