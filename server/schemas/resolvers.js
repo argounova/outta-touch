@@ -74,7 +74,12 @@ const resolvers = {
         members: [admin],
         admins: [admin],
       });
-      return groupData;
+      console.log(groupData);
+
+      await User.findByIdAndUpdate(context.user._id,
+        { $push: { groups: groupData._id } });
+
+      return (groupData);
     },
     updateGroup: async (parent, { groupId, name, admin }, context) => {
       const groupData = await Group.findById(groupId);
