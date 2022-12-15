@@ -8,6 +8,22 @@ query user($userId: ID!) {
     username
     groups {
       _id
+      name
+      messages {
+        message
+        timestamp
+        updated
+      }
+      members {
+        _id
+        email
+        username
+      }
+      admins {
+        _id
+        email
+        username
+      }
     }
   }
 }
