@@ -10,22 +10,6 @@ export const ADD_USER = gql`
       username
       groups {
         _id
-        name
-        admins {
-          _id
-          email
-          username
-        }
-        members {
-          _id
-          email
-          username
-        }
-        messages {
-          message
-          timestamp
-          updated
-        }
       }
     }
   }
