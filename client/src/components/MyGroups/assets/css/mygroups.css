@@ -1,0 +1,7 @@
+.myGroups-title {
+    text-align: center;
+    font-family: var(--chewy);
+    font-size: 400%;
+    color: var(--yellow);
+    text-shadow: var(--alt-shadow);
+}
