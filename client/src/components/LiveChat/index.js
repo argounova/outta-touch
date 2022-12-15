@@ -1,17 +1,17 @@
 import React from "react";
 import './assets/css/livechat.css';
-import { useNavigate } from "react-router-dom";
-import Photos from "../Photos";
+// import { useNavigate } from "react-router-dom";
+// import Photos from "../Photos";
 
 const LiveChat = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     return (
         <>
             <div className='chat-name'>
             {/* TODO: Add dynamic chat name */}
                 <h2>Chat Name</h2>
             {/* TODO: Add logo button for photos */}
-                <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button>
+                {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
             </div>
             <div className='message-div'>
             {/* TODO: Render messages in real time via subscriptions */}

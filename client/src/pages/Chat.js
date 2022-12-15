@@ -24,35 +24,29 @@ const Chat = () => {
     const [showToggleClass, setShowToggleClass] = useState(false);
 
     const setAll = (isFalse) => {
-        setShowMainContent(isFalse);
+        // setShowMainContent(isFalse);
         setShowPhotos(isFalse);
         setShowLiveChat(isFalse);
     }
 
-    const [showMainContent, setShowMainContent] = useState(true);
+    // const [showMainContent, setShowMainContent] = useState(true);
     const [showLiveChat, setShowLiveChat] = useState(true);
     const [showPhotos, setShowPhotos] = useState(false);
 
-    const photosClick = () => {
-        setAll(false);
-        setShowPhotos(true);
-    }
+    // const photosClick = () => {
+    //     setAll(false);
+    //     setShowPhotos(true);
+    // }
 
-    const liveChatClick = () => {
-      setAll(false);
-      setShowLiveChat(true);
-    }
+    // const liveChatClick = () => {
+    //   setAll(false);
+    //   setShowLiveChat(true);
+    // }
 
     const homeClick = () => {
         navigate('/dashboard', {replace: true});
     }
 
-    // const liveChatClick = () => {
-    //     setAll(false);
-    //     setShowLiveChat(true);
-    // }
-
-    const MainContent = () => {
     return (
         <>
         <header className='dashboard-header'>
@@ -75,13 +69,12 @@ const Chat = () => {
         </header>
         <main className='chat-main'>
             <section className='chat-container'>
-            {showLiveChat ? <Chat /> : null}
+            {showLiveChat ? <LiveChat /> : null}
             {showPhotos ? <Photos /> : null}
             </section>
         </main>
         </>
     )
   }
-}
 
 export default Chat;
