@@ -1,0 +1,38 @@
+.chat-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: var(--Bshade1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 2%;
+}
+
+.chat-name h2 {
+    font-family: var(--chewy);
+    color: var(--yellow);
+    text-shadow: var(--simple-shadow);
+
+}
+
+.message-button {
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: var(--chewy);
+    background-color: var(--yellow);
+    color: var(--PPshade1);
+    font-size: 30px;
+}
+
+.message-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-left: #000 solid 2px;
+    border-right: #000 solid 2px;
+    background: linear-gradient(180deg, rgba(217,210,215,1) 7%, rgba(255,247,253,1) 100%);
+}
