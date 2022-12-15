@@ -77,7 +77,7 @@ const resolvers = {
       console.log(groupData);
 
       await User.findByIdAndUpdate(context.user._id,
-        { $push: { groups: groupData._id } });
+        { $addToSet: { groups: groupData } });
 
       return (groupData);
     },

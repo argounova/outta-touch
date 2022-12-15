@@ -24,7 +24,7 @@ const userSchema = new Schema(
     },
     groups: [
       {
-        type: Schema.Types.ObjectId,
+        type: Array,
         ref: "Group",
       },
     ],
