@@ -44,6 +44,8 @@ const CreateAGroup = () => {
             });
             Auth.loggedIn();
             if (data) {
+                // TODO: update styling for the alert to be consistent with app design
+                // * URL: https://sweetalert2.github.io/#configuration
                 Swal.fire({
                     title: 'Way to NOT be Outta-Touch!',
                     text: 'Your Group was created!',
