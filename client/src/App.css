@@ -56,3 +56,7 @@
     -0.3em 0.1em 0.1em var(--PPshade4),
     0.4em -0.3em 0.1em var(--Bshade3);
 }
+
+body {
+    background-image: url("./pages/assets/img/background2.jpeg");
+}
