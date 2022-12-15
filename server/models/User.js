@@ -24,7 +24,7 @@ const userSchema = new Schema(
     },
     groups: [
       {
-        type: Array,
+        type: Object,
         ref: "Group",
       },
     ],

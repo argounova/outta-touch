@@ -74,7 +74,7 @@ const resolvers = {
         members: [admin],
         admins: [admin],
       });
-      console.log(groupData);
+      // console.log(groupData);
 
       await User.findByIdAndUpdate(context.user._id,
         { $addToSet: { groups: groupData } });

@@ -9,20 +9,20 @@ query user($userId: ID!) {
     groups {
       _id
       name
-      messages {
-        message
-        timestamp
-        updated
+      admins {
+        _id
+        email
+        username
       }
       members {
         _id
         email
         username
       }
-      admins {
-        _id
-        email
-        username
+      messages {
+        message
+        timestamp
+        updated
       }
     }
   }
