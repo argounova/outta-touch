@@ -42,6 +42,9 @@ const resolvers = {
       const groupData = await Group.findById(groupId);
       return groupData;
     },
+    userByName: async (parent, { username }) => {
+      return User.findOne({ username });
+    },
   },
 
   Mutation: {
