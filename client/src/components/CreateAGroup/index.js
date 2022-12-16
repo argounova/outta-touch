@@ -51,7 +51,9 @@ const CreateAGroup = () => {
                     text: 'Your Group was created!',
                     icon: 'success',
                     confirmButtonText: "Yo, that's sick",
-                  })
+                  }).then(function(){
+                    window.location.replace('/dashboard')
+                })
             }
         } catch (error) {
             console.log(error);
