@@ -23,54 +23,50 @@ const LiveChat = () => {
 
     // console.log(loading ? 'Loading ...' : data.group.admins);
     let adminArray = loading ? 'Loading ...' : data.group.admins;
+    const currentUser = Auth.getUser();
 
     console.log(adminArray);
 
+    // *evaluate whether to show the invite/add button
+    function evaluateAdmin() {
+        for (let i = 0; i < adminArray.length; i++) {
+            console.log(adminArray[i]._id);
+            console.log(currentUser.data._id);
+            if (adminArray[i]._id.includes(currentUser.data._id)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
     const AddGroupMember = () => {
         const [addGroupMember, { error, data }] = useMutation(ADD_GROUP_MEMBER);
-        const currentUser = Auth.getUser();
         const currentGroup = localStorage.getItem('currentGroupChat');
 
-        function evaluateClick() {
-            for (let i = 0; i < adminArray.length; i++) {
-                console.log(adminArray[i]._id);
-                console.log(currentUser.data._id);
-                if (adminArray[i]._id.includes(currentUser.data._id)) {
-                    alert('Sick Dude')
-                }
-                else {
-                    alert('You must be an admin to add a group member')
-                }
+        const handleClick = async () => {
+
+            try {
+                const { data } = await addGroupMember({
+                    variables: {
+                        userId: '639cb57e2f8b0896a522860b',
+                        groupId: currentGroup,
+                        admin: currentUser.data._id
+                    },
+                });
+                // data ? alert('Success') : alert('Oops! Something went wrong!')
+                console.log(`Invite Button Click: ${JSON.stringify(data)}`);
+            } catch (error) {
+                console.error(error);
             }
         }
 
-        // try {
-        //     const { data } = addGroupMember({
-        //         variables: {
-        //             userId: '2331423dwed23',
-        //             groupId: 'lajsflkf3k32kd',
-        //             admin: 'asdfsdfoe3'
-        //         },
-        //     });
-
-        // } catch (e) {
-        //     console.error(e);
-        // }
-
         return (
-            <button className='invite-btn' onClick={evaluateClick}>
+            <button className='invite-btn' onClick={handleClick}>
                 <img className='invite-icon' src={inviteBtn} alt='invite button' />
             </button>
         )
-
-    }
-
-// ! have two handlers? One if admin matches user id and on if not?
-    const successMemberClick = () => {
-        
-    }
-
-    const failureMemberClick = () => {
 
     }
 
@@ -81,7 +77,7 @@ const LiveChat = () => {
                 <h2> {loading ? (<div>Loading...</div>) : data.group.name} </h2>
                 {/* TODO: Add logo button for photos */}
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
-                <AddGroupMember />
+                {evaluateAdmin ? <AddGroupMember /> : null}
             </div>
             <div className='message-div'>
                 {/* TODO: Render messages in real time via subscriptions */}

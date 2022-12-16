@@ -36,7 +36,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError("Not logged in");
-      
+
     },
     group: async (parent, { groupId }, context) => {
       const groupData = await Group.findById(groupId);
@@ -100,17 +100,26 @@ const resolvers = {
     },
     addGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find((element) => element === admin);
-      if (!isAdmin) return;
-      if (groupData.members.find((element) => element.user === userId)) {
-        return false;
-      }
-      const userData = await User.findById(userId);
-      groupData.members.push({ user: userId });
-      userData.groups.push(groupData.id);
-      groupData.save();
-      userData.save();
-      return true;
+      // let isAdmin = groupData.admins.find((element) => element === admin);
+      // if (!isAdmin) return;
+
+      // if (groupData.members.find((element) => element.user === userId)) {
+      //   return false;
+      // };
+
+      const userData = await User.findByIdAndUpdate(userId,
+        {$addToSet: { groups: groupData } }
+        );
+      
+      await Group.findByIdAndUpdate(groupId, 
+        { $addToSet: { members: userData._id } }
+      )
+      
+      // groupData.members.push({ user: userId });
+      // userData.groups.push(groupData.id);
+      // groupData.save();
+      // userData.save();
+      // return true;
     },
     removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
