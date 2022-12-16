@@ -52,7 +52,7 @@ function App() {
             element={Auth.loggedIn() ? <Dashboard /> : <ProtectRoute />}
           />
           <Route
-          path='/chat'
+          path='/chat:groupId'
           element={Auth.loggedIn() ? <Chat /> : <ProtectRoute />}
           />
         </Routes>

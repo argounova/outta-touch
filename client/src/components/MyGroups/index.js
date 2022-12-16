@@ -2,6 +2,8 @@ import React from "react";
 
 import { useQuery } from '@apollo/client';
 
+import { useNavigate } from "react-router-dom";
+
 import './assets/css/mygroups.css';
 
 import Auth from "../../utils/auth";
@@ -59,6 +61,12 @@ const MyGroups = () => {
         backgroundPosition: 'center',
     }
 
+    let navigate = useNavigate();
+    const groupClick = (e) => {
+        let path = `/chat/${e.target.dataset.groupId}`;
+        navigate(path);
+    };
+
     // in the return we will map over the information and since the index length will be the same for both arrays, it makes it that much easier to get the information we need!
 // TODO: render a message that tells user to head to create a group if they do not have any created
     return (
@@ -70,7 +78,7 @@ const MyGroups = () => {
             {loading ? (
                 <div>Loading...</div>
             ) : userGroupsNames.map((names, index) =>
-                <button style={buttonStyle} className="groups-button" data-group-id={userGroupsIds[index]} key={names.replace(/\s/g, "")}>{names}</button>
+                <button onClick={groupClick} style={buttonStyle} className="groups-button" data-group-id={userGroupsIds[index]} key={names.replace(/\s/g, "")}>{names}</button>
             )}
             </section>
         </>
