@@ -1,7 +1,53 @@
+/* Images on button: 
+----------------------------------------
+bricks, paintsplatter10: 
+Photo(s) by Steve Johnson: 
+https://www.pexels.com/photo/close-up-photo-of-colored-stones-6433211/ 
+https://www.pexels.com/photo/yellow-and-red-abstract-painting-1789968/
+----------------------------------------
+paintswirl, paintswirl3: 
+Photo by Dids: https://www.pexels.com/photo/glossy-surface-of-purple-liquid-nail-polish-7013683/
+https://www.pexels.com/photo/abstract-painting-with-ink-blots-on-colorful-surface-3848550/
+----------------------------------------
+paintswirl2:
+Photo by Merlin Lightpainting: https://www.pexels.com/photo/mixture-of-red-and-purple-paint-11105651/
+----------------------------------------
+
+
+----------------------------------------
+
+
+----------------------------------------
+*/
+
 .myGroups-title {
     text-align: center;
     font-family: var(--chewy);
     font-size: 400%;
     color: var(--yellow);
     text-shadow: var(--alt-shadow);
+}
+
+.groups-button {
+    height: 300px;
+    width: 300px;
+    border-radius: 3rem;
+    border: 3px solid black;
+    margin: 1%;
+    font-family: var(--chewy);
+    color: var(--orange);
+    font-size: 43px;
+    -webkit-text-stroke: 1px var(--blue);
+    text-shadow:   3px 3px 0 #000,
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+      1px 1px 0 #000;
+}
+
+.groups-section {
+    display: flex;
+    flex-flow: row Wrap;
+    justify-content: space-around;
+    align-items: space-around;
 }
