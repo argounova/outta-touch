@@ -36,6 +36,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError("Not logged in");
+      
     },
     group: async (parent, { groupId }, context) => {
       const groupData = await Group.findById(groupId);

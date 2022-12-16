@@ -30,7 +30,10 @@ const LiveChat = () => {
             {/* TODO: Render messages in real time via subscriptions */}
             </div>
             {/* TODO: Add button send message functionality */}
-            <button className='message-button'>Send Message</button>
+            <form className="message-form">
+            <input className="message-input" placeholder=". . . my super sick message" name="chat" type="text" />
+            <button className='message-button' type="submit" >Send Message</button>
+            </form>
         </>
     )
 }
