@@ -7,6 +7,8 @@ import { QUERY_GROUP } from '../../utils/queries';
 import { ADD_GROUP_MEMBER } from "../../utils/mutations";
 import { useQuery, useMutation } from '@apollo/client';
 
+import Swal from 'sweetalert2';
+
 import inviteBtn from './assets/img/Invite.png';
 
 import Auth from "../../utils/auth";
@@ -48,6 +50,22 @@ const LiveChat = () => {
         const handleClick = async () => {
 
             try {
+                const {value: userName } = await Swal.fire({
+                    title: "Enter your homie's username",
+                    input: 'text',
+                    inputLabel: "My homie's username",
+                    showCancelButton: true,
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return "You can't leave this blank, YO!"
+                        }
+                    },
+                    // confirmButtonText: "Yo, that's sick",
+                })
+                // TODO: take username from prev and query for the user's id here:
+
+                console.log(userName);
+                // -------------------------------------//
                 const { data } = await addGroupMember({
                     variables: {
                         userId: '639cb57e2f8b0896a522860b',

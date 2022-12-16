@@ -100,7 +100,7 @@ const resolvers = {
     },
     addGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
-    
+
       if (admin === context.user._id) {
         const userData = await User.findById(userId);
 
