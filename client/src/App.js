@@ -46,7 +46,10 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-          <Route path='/' element={<Landing />} />
+          <Route
+            path='/'
+            element={Auth.loggedIn() ? <Dashboard /> : <Landing />}
+          />
           <Route
             path='/dashboard'
             element={Auth.loggedIn() ? <Dashboard /> : <ProtectRoute />}
