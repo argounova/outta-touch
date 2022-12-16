@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import './assets/css/livechat.css';
 // import { useNavigate } from "react-router-dom";
 // import Photos from "../Photos";
 
-import { QUERY_GROUP } from '../../utils/queries';
+import { QUERY_GROUP, QUERY_USER_BY_NAME } from '../../utils/queries';
 import { ADD_GROUP_MEMBER } from "../../utils/mutations";
 import { useQuery, useMutation } from '@apollo/client';
 
@@ -27,13 +27,13 @@ const LiveChat = () => {
     let adminArray = loading ? 'Loading ...' : data.group.admins;
     const currentUser = Auth.getUser();
 
-    console.log(adminArray);
+    // console.log(adminArray);
 
     // *evaluate whether to show the invite/add button
     function evaluateAdmin() {
         for (let i = 0; i < adminArray.length; i++) {
-            console.log(adminArray[i]._id);
-            console.log(currentUser.data._id);
+            // console.log(adminArray[i]._id);
+            // console.log(currentUser.data._id);
             if (adminArray[i]._id.includes(currentUser.data._id)) {
                 return true;
             }
@@ -44,13 +44,27 @@ const LiveChat = () => {
     }
 
     const AddGroupMember = () => {
-        const [addGroupMember, { error, data }] = useMutation(ADD_GROUP_MEMBER);
+        const [addGroupMember] = useMutation(ADD_GROUP_MEMBER);
         const currentGroup = localStorage.getItem('currentGroupChat');
 
-        const handleClick = async () => {
+        let addedUser = '';
 
+        if (localStorage.getItem('addedUser') !== null) {
+            addedUser = localStorage.getItem('addedUser');
+        }
+
+            const { loading, data } = useQuery(QUERY_USER_BY_NAME,
+                {
+                    variables: {
+                        username: addedUser
+                    }
+                }, localStorage.removeItem('addedUser'));
+
+                console.log(loading ? 'Loading' : data);
+
+        const handleClick = async () => {
             try {
-                const {value: userName } = await Swal.fire({
+                const {value: userName} = await Swal.fire({
                     title: "Enter your homie's username",
                     input: 'text',
                     inputLabel: "My homie's username",
@@ -60,11 +74,10 @@ const LiveChat = () => {
                             return "You can't leave this blank, YO!"
                         }
                     }
-                })
-                // TODO: take username from prev and query for the user's id here:
+                });
 
                 console.log(userName);
-                // -------------------------------------//
+                localStorage.setItem('addedUser', userName);
                 const { data } = await addGroupMember({
                     variables: {
                         userId: '639cb57e2f8b0896a522860b',
@@ -73,7 +86,7 @@ const LiveChat = () => {
                     },
                 });
                 // data ? alert('Success') : alert('Oops! Something went wrong!')
-                console.log(`Invite Button Click: ${JSON.stringify(data)}`);
+                // console.log(`Invite Button Click: ${JSON.stringify(data)}`);
             } catch (error) {
                 console.error(error);
             }
