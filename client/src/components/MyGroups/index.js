@@ -63,8 +63,11 @@ const MyGroups = () => {
 
     let navigate = useNavigate();
     const groupClick = (e) => {
-        let path = `/chat/${e.target.dataset.groupId}`;
+        let path = `/chat`;
         navigate(path);
+
+        // TODO: encrypt group ID - go to livechat component and decode
+        localStorage.setItem('currentGroupChat', e.target.dataset.groupId)
     };
 
     // in the return we will map over the information and since the index length will be the same for both arrays, it makes it that much easier to get the information we need!
