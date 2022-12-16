@@ -52,3 +52,62 @@ mutation createGroup($name: String!, $admin: ID!) {
   }
 }
 `
+export const ADD_GROUP_MEMBER = gql`
+mutation addGroupMember($userId: ID!, $groupId: ID!, $admin: ID!) {
+  addGroupMember(userId: $userId, groupId: $groupId, admin: $admin)
+}
+`
+
+export const DELETE_GROUP = gql`
+mutation deleteGroup($groupId: ID!, $admin: ID!) {
+  deleteGroup(groupId: $groupId, admin: $admin) {
+    _id
+    admins {
+      _id
+      email
+      username
+    }
+    members {
+      _id
+      email
+      username
+    }
+    messages {
+      message
+      timestamp
+      updated
+    }
+    name
+  }
+}
+`
+
+export const REMOVE_GROUP_MEMBER = gql`
+mutation removeGroupMember($userId: ID!, $groupId: ID!, $admin: ID!) {
+  removeGroupMember(userId: $userId, groupId: $groupId, admin: $admin)
+}
+`
+
+export const UPDATE_GROUP = gql`
+mutation updateGroup($groupId: ID!, $name: String!, $admin: ID!) {
+  updateGroup(groupId: $groupId, name: $name, admin: $admin) {
+    _id
+    admins {
+      _id
+      email
+      username
+    }
+    members {
+      _id
+      email
+      username
+    }
+    messages {
+      message
+      timestamp
+      updated
+    }
+    name
+  }
+}
+`
