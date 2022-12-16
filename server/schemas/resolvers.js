@@ -100,26 +100,23 @@ const resolvers = {
     },
     addGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);
-      // let isAdmin = groupData.admins.find((element) => element === admin);
-      // if (!isAdmin) return;
+    
+      if (admin === context.user._id) {
+        const userData = await User.findById(userId);
 
-      // if (groupData.members.find((element) => element.user === userId)) {
-      //   return false;
-      // };
-
-      const userData = await User.findByIdAndUpdate(userId,
-        {$addToSet: { groups: groupData } }
+        await Group.findByIdAndUpdate(groupId,
+          { $addToSet: { members: userData._id } }
         );
-      
-      await Group.findByIdAndUpdate(groupId, 
-        { $addToSet: { members: userData._id } }
-      )
-      
-      // groupData.members.push({ user: userId });
-      // userData.groups.push(groupData.id);
-      // groupData.save();
-      // userData.save();
-      // return true;
+        // calling this last so the user's groups array gets the full list of mbrs
+        await User.findByIdAndUpdate(userId,
+          { $addToSet: { groups: groupData } }
+        );
+
+        console.log('Successfully added group member')
+      }
+      else {
+        console.log('You must be an admin to do that!');;
+      }
     },
     removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);

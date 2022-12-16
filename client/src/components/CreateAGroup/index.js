@@ -59,7 +59,7 @@ const CreateAGroup = () => {
 
         setFormState({
             groupName: '',
-            password: '',
+            // password: '',
         });
     };
 
@@ -75,13 +75,13 @@ const CreateAGroup = () => {
                     value={formState.groupName}
                     onChange={handleChange}
                 />
-                <input
+                {/* <input
                     placeholder='Enter Group Password'
                     name='password'
                     type='password'
                     value={formState.password}
                     onChange={handleChange}
-                />
+                /> */}
                 <button className='create-button' type='submit'>Create Group</button>
             </form>
             {error && (
