@@ -48,6 +48,7 @@ Photo by Zaksheuskaya: https://www.pexels.com/photo/teal-white-and-pink-paint-15
     min-height: 100vh;
     padding: 2%;
     background-color: var(--PPshade1);
+    background: linear-gradient(225deg, rgba(125,37,105,0.9) 0%, rgba(189,57,158,0.95) 22%, rgba(227,68,190,0.95) 65%, rgba(255,250,30,0.7) 100%);
     display: flex;
     flex-direction: column;
     align-items: space-around;

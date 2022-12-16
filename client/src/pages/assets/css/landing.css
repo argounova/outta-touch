@@ -5,25 +5,32 @@
     justify-content: flex-start;
     min-height: 100vh;
     background-color: var(--PPshade1);
+    background: linear-gradient(225deg, rgba(125,37,105,0.9) 0%, rgba(189,57,158,0.9) 22%, rgba(227,68,190,0.9) 65%, rgba(255,250,30,0.7) 100%);
 }
 
 .landing-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 70vh;
 }
 
-.landing-text {
+.landing-button {
     text-decoration: none;
     font-family: var(--chewy);
     font-size: 250%;
     color: var(--yellow);
     text-shadow: var(--simple-shadow);
+    height: 150px;
+    width: 350px;
+    border-radius: 3rem;
+    border: 3px solid black;
+    background: radial-gradient(circle, rgba(28,16,122,1) 0%, rgba(19,11,84,1) 100%);
 }
 
-.landing-text:hover {
+.landing-button:hover {
     color: var(--yellow);
-    font-size: 275%;
+    font-size: 255%;
+    box-shadow: 5px 3px 10px #000;
 }
