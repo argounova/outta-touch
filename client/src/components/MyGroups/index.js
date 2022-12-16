@@ -31,8 +31,18 @@ const MyGroups = () => {
             }
         });
 
+        const test = loading ? 'Loading' : data.user.username;
+
+    if ( test !== null) {
+        localStorage.setItem('currentUser', test)
+    }
+
+    const storageValue = localStorage.getItem('currentUser');
+
+    console.log(storageValue);
+
     // let the data load and then save the groups array to userGroups
-    
+
     const userGroups = loading ? 'Loading' : data.user.groups;
 
     // console.log(userGroups);
@@ -63,23 +73,23 @@ const MyGroups = () => {
 
     let navigate = useNavigate();
     const groupClick = (e) => {
-        let path = `/chat/${e.target.dataset.groupId}`;
+        let path = `/chat`;
         navigate(path);
-    };
 
+        // TODO: encrypt group ID - go to livechat component and decode
+        localStorage.setItem('currentGroupChat', e.target.dataset.groupId)
+    };
     // in the return we will map over the information and since the index length will be the same for both arrays, it makes it that much easier to get the information we need!
-// TODO: render a message that tells user to head to create a group if they do not have any created
+    // TODO: render a message that tells user to head to create a group if they do not have any created
     return (
         <>
-            <h1 className="myGroups-title">{loading ? (
-                <div>Loading...</div>
-            ) : `${data.user.username}'s Groups`}</h1>
+            <h1 className="myGroups-title">{storageValue ? `${storageValue}'s Groups` : `${data.user.username}'s Groups`}</h1>
             <section className="groups-section">
-            {loading ? (
-                <div>Loading...</div>
-            ) : userGroupsNames.map((names, index) =>
-                <button onClick={groupClick} style={buttonStyle} className="groups-button" data-group-id={userGroupsIds[index]} key={names.replace(/\s/g, "")}>{names}</button>
-            )}
+                {loading ? (
+                    <div>Loading...</div>
+                ) : userGroupsNames.map((names, index) =>
+                    <button onClick={groupClick} style={buttonStyle} className="groups-button" data-group-id={userGroupsIds[index]} key={names.replace(/\s/g, "")}>{names}</button>
+                )}
             </section>
         </>
     )
