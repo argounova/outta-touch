@@ -4,16 +4,50 @@ export const QUERY_USER = gql`
 query user($userId: ID!) {
   user(userId: $userId) {
     _id
-    username
     email
-    courseCount
-    courses {
+    username
+    groups {
       _id
-      courseName
-      startDate
-      endDate
-      description
-      instructor
+      name
+      admins {
+        _id
+        email
+        username
+      }
+      members {
+        _id
+        email
+        username
+      }
+      messages {
+        message
+        timestamp
+        updated
+      }
+    }
+  }
+}
+`;
+
+export const QUERY_GROUP = gql`
+query group($groupId: ID!) {
+  group(groupId: $groupId) {
+    _id
+    name
+    admins {
+      _id
+      email
+      username
+    }
+    members {
+      _id
+      email
+      username
+    }
+    messages {
+      message
+      timestamp
+      updated
     }
   }
 }
