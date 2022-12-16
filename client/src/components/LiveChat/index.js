@@ -59,8 +59,7 @@ const LiveChat = () => {
                         if (!value) {
                             return "You can't leave this blank, YO!"
                         }
-                    },
-                    // confirmButtonText: "Yo, that's sick",
+                    }
                 })
                 // TODO: take username from prev and query for the user's id here:
 
@@ -91,7 +90,6 @@ const LiveChat = () => {
     return (
         <>
             <div className='chat-name'>
-                {/* TODO: Add dynamic chat name */}
                 <h2> {loading ? (<div>Loading...</div>) : data.group.name} </h2>
                 {/* TODO: Add logo button for photos */}
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
