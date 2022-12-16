@@ -45,7 +45,7 @@ const MyGroups = () => {
             <h1 className="myGroups-title">{loading ? 'Loading' : `${data.user.username}'s Groups`}</h1>
             <section>
               {userGroupsNames.map((names, index) => 
-              <button id={userGroupsIds[index]} key={names}>{names}</button>
+              <button data-group-id={userGroupsIds[index]} key={names}>{names}</button>
               )}
             </section>
         </>
