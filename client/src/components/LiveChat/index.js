@@ -46,43 +46,51 @@ const LiveChat = () => {
     const AddGroupMember = () => {
         const [addGroupMember] = useMutation(ADD_GROUP_MEMBER);
         const currentGroup = localStorage.getItem('currentGroupChat');
-        const [userByName, {loading, data}] = useLazyQuery(QUERY_USER_BY_NAME);
-        console.log(loading ? 'Loading...' : data)
+        const [userByName, { loading, data }] = useLazyQuery(QUERY_USER_BY_NAME);
+        const [state, setState] = useState(false);
 
         function handleClick() {
-            
-                const userName = Swal.fire({
-                    title: "Enter your homie's username",
-                    input: 'text',
-                    inputLabel: "My homie's username",
-                    showCancelButton: true,
-                    inputValidator: (value) => {
-                        if (!value) {
-                            return "You can't leave this blank, YO!"
-                        }
+            const userName = Swal.fire({
+                title: "Enter your homie's username",
+                input: 'text',
+                inputLabel: "My homie's username",
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return "You can't leave this blank, YO!"
                     }
-                })
+                }
+            })
                 .then((userName) => {
                     const addedUser = userName.value;
 
-                     userByName({
+                    userByName({
                         variables: {
                             username: addedUser,
                         }
                     })
-                })
-                .then ((currentUserId) => {
-                    const { data } = addGroupMember({
-                        variables: {
-                            userId: '639cb57e2f8b0896a522860b',
-                            groupId: currentGroup,
-                            admin: currentUser.data._id
-                        },
-                    });
+                    setState(true);
                 })
                 .catch((error) => {
                     console.log(error);
                 })
+        }
+
+        if ((data !== undefined) && (data.userByName !== null) && (state)) {
+
+            const userData = loading ? 'Loading...' : data.userByName._id;
+            console.log(userData);
+
+            const { groupData } = addGroupMember({
+                variables: {
+                    userId: userData,
+                    groupId: currentGroup,
+                    admin: currentUser.data._id
+                },
+            }).then(() => {
+
+                setState(false);
+            }) 
         }
 
         return (
