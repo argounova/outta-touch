@@ -9,7 +9,7 @@ const typeDefs = gql`
   }
 
   type Message {
-    message: String
+    body: String
     user: User
     timestamp: Date
     updated: Boolean
@@ -44,6 +44,7 @@ const typeDefs = gql`
     deleteGroup(groupId: ID!, admin: ID!): Group
     addGroupMember(userId: ID!, groupId: ID!, admin: ID!): Group
     removeGroupMember(userId: ID!, groupId: ID!, admin: ID!): Boolean
+    postMessage(body: String!, groupId: ID!, username: String!):Group
   }
 `;
 

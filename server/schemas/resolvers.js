@@ -48,6 +48,20 @@ const resolvers = {
   },
 
   Mutation: {
+    postMessage: async (parent, {body, groupId, username}, context) => {
+      
+        return Group.findOneAndUpdate(groupId,
+          {$addToSet: {
+            messages: {
+              body: body,
+              user: {
+                username: username
+              },
+              timestamp: new Date,
+            }
+          }}
+        );
+    },
     /// ADD USER ///
     addUser: async (parent, args) => {
       const user = await User.create(args);
