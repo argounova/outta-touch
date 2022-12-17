@@ -5,7 +5,7 @@ import './assets/css/livechat.css';
 
 import { QUERY_GROUP, QUERY_USER_BY_NAME } from '../../utils/queries';
 import { ADD_GROUP_MEMBER } from "../../utils/mutations";
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 
 import Swal from 'sweetalert2';
 
@@ -46,25 +46,12 @@ const LiveChat = () => {
     const AddGroupMember = () => {
         const [addGroupMember] = useMutation(ADD_GROUP_MEMBER);
         const currentGroup = localStorage.getItem('currentGroupChat');
+        const [userByName, {loading, data}] = useLazyQuery(QUERY_USER_BY_NAME);
+        console.log(loading ? 'Loading...' : data)
 
-        let addedUser = '';
-
-        if (localStorage.getItem('addedUser') !== null) {
-            addedUser = localStorage.getItem('addedUser');
-        }
-
-            const { loading, data } = useQuery(QUERY_USER_BY_NAME,
-                {
-                    variables: {
-                        username: addedUser
-                    }
-                }, localStorage.removeItem('addedUser'));
-
-                console.log(loading ? 'Loading' : data);
-
-        const handleClick = async () => {
-            try {
-                const {value: userName} = await Swal.fire({
+        function handleClick() {
+            
+                const userName = Swal.fire({
                     title: "Enter your homie's username",
                     input: 'text',
                     inputLabel: "My homie's username",
@@ -74,22 +61,28 @@ const LiveChat = () => {
                             return "You can't leave this blank, YO!"
                         }
                     }
-                });
+                })
+                .then((userName) => {
+                    const addedUser = userName.value;
 
-                console.log(userName);
-                localStorage.setItem('addedUser', userName);
-                const { data } = await addGroupMember({
-                    variables: {
-                        userId: '639cb57e2f8b0896a522860b',
-                        groupId: currentGroup,
-                        admin: currentUser.data._id
-                    },
-                });
-                // data ? alert('Success') : alert('Oops! Something went wrong!')
-                // console.log(`Invite Button Click: ${JSON.stringify(data)}`);
-            } catch (error) {
-                console.error(error);
-            }
+                     userByName({
+                        variables: {
+                            username: addedUser,
+                        }
+                    })
+                })
+                .then ((currentUserId) => {
+                    const { data } = addGroupMember({
+                        variables: {
+                            userId: '639cb57e2f8b0896a522860b',
+                            groupId: currentGroup,
+                            admin: currentUser.data._id
+                        },
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         }
 
         return (
