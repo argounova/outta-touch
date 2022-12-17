@@ -60,3 +60,17 @@ query userByName($username: String!) {
   }
 }
 `
+
+export const QUERY_MESSAGES = gql`
+query messages($groupId: ID!) {
+  messages(groupId: $groupId) {
+    messages {
+      body
+      user {
+        username
+      }
+      timestamp
+    }
+  }
+}
+`

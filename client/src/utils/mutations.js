@@ -129,3 +129,16 @@ mutation updateGroup($groupId: ID!, $name: String!, $admin: ID!) {
   }
 }
 `
+export const POST_MESSAGE = gql`
+mutation postMessage($body: String!, $groupId: ID!, $username: String!) {
+  postMessage(body: $body, groupId: $groupId, username: $username) {
+    messages {
+      body
+      user {
+        username
+      }
+      timestamp
+    }
+  }
+}
+`
