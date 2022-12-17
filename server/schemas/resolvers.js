@@ -83,6 +83,7 @@ const resolvers = {
       await User.findByIdAndUpdate(context.user._id,
         { $addToSet: { groups: groupData } });
 
+      console.log('successfully created group');
       return (groupData);
     },
     updateGroup: async (parent, { groupId, name, admin }, context) => {
@@ -102,24 +103,34 @@ const resolvers = {
       return groupDelete;
     },
     addGroupMember: async (parent, { userId, groupId, admin }, context) => {
-      const groupData = await Group.findById(groupId);
+
+      const userData = await User.findById(userId);
 
       if (admin === context.user._id) {
-        const userData = await User.findById(userId);
 
-        await Group.findByIdAndUpdate(groupId,
-          { $addToSet: { members: userData._id } }
-        );
+        const groupData = await Group.findByIdAndUpdate(groupId,
+          { $addToSet: { members: userData._id } });
+
+          // TODO: Maybe? So, pushing the members and admins  array to the users groups array is causing the user to have duplications of the same group in their array. Removing those fields seems to solve the problem... Most chat page rendering should come from querying the group model so i dont think this will end up being an issue. Its nice to have that information in the user groups array but i dont think it will be neccessary... 
         // calling this last so the user's groups array gets the full list of mbrs
         await User.findByIdAndUpdate(userId,
-          { $addToSet: { groups: groupData } }
-        );
+          { $addToSet: { 
+            groups: {
+              name: groupData.name,
+              _id: groupData._id,
+            }
+          } });
 
+        // console.log(testUser);
         console.log('Successfully added group member')
+
+        return groupData;
+
       }
       else {
-        console.log('You must be an admin to do that!');;
-      }
+        console.log('You must be an admin to do that!');
+
+      };
     },
     removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
       const groupData = await Group.findById(groupId);

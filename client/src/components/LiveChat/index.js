@@ -49,12 +49,14 @@ const LiveChat = () => {
     }
 
     const AddGroupMember = () => {
-        const [addGroupMember] = useMutation(ADD_GROUP_MEMBER);
+
+        const [addGroupMember, error] = useMutation(ADD_GROUP_MEMBER);
         const currentGroup = localStorage.getItem('currentGroupChat');
         const [userByName, { loading, data }] = useLazyQuery(QUERY_USER_BY_NAME);
         const [state, setState] = useState(false);
 
         function handleClick() {
+        console.log('Inside handleClick');
             const userName = Swal.fire({
                 title: "Enter your homie's username",
                 input: 'text',
@@ -82,20 +84,33 @@ const LiveChat = () => {
         }
 
         if ((data !== undefined) && (data.userByName !== null) && (state)) {
+            setState(false);
+            // const userData = loading ? 'Loading...' : data.userByName._id;
+            // console.log(userData);
 
-            const userData = loading ? 'Loading...' : data.userByName._id;
-            console.log(userData);
+            // addGroupMember({
+            //     variables: {
+            //         userId: userData,
+            //         groupId: currentGroup,
+            //         admin: currentUser.data._id
+            //     },
+            // })
 
-            const { groupData } = addGroupMember({
-                variables: {
-                    userId: userData,
-                    groupId: currentGroup,
-                    admin: currentUser.data._id
-                },
-            }).then(() => {
-
-                setState(false);
-            })
+            if (loading) {
+                console.log('loading...')
+            }
+            else {
+                console.log('adding member')
+                addGroupMember({
+                    variables: {
+                        userId: data.userByName._id,
+                        groupId: currentGroup,
+                        admin: currentUser.data._id
+                    },
+                })
+                console.log(error.client.cache.data.data);
+                return;
+            }
         }
 
         return (

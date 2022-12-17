@@ -42,7 +42,7 @@ const typeDefs = gql`
     createGroup(name: String!, admin: ID!): Group
     updateGroup(groupId: ID!, name: String!, admin: ID!): Group
     deleteGroup(groupId: ID!, admin: ID!): Group
-    addGroupMember(userId: ID!, groupId: ID!, admin: ID!): Boolean
+    addGroupMember(userId: ID!, groupId: ID!, admin: ID!): Group
     removeGroupMember(userId: ID!, groupId: ID!, admin: ID!): Boolean
   }
 `;
