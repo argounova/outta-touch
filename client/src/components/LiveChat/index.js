@@ -30,15 +30,20 @@ const LiveChat = () => {
     // console.log(adminArray);
 
     // *evaluate whether to show the invite/add button
-    function evaluateAdmin() {
-        for (let i = 0; i < adminArray.length; i++) {
-            // console.log(adminArray[i]._id);
-            // console.log(currentUser.data._id);
-            if (adminArray[i]._id.includes(currentUser.data._id)) {
-                return true;
-            }
-            else {
-                return false;
+    const evaluateAdmin = () => {
+        if (loading) {
+            return('Loading...')
+        }
+        else {
+            for (let i = 0; i < adminArray.length; i++) {
+                // console.log(adminArray[i]._id);
+                // console.log(currentUser.data._id);
+                if (adminArray[i]._id.includes(currentUser.data._id)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         }
     }
@@ -90,7 +95,7 @@ const LiveChat = () => {
             }).then(() => {
 
                 setState(false);
-            }) 
+            })
         }
 
         return (
@@ -107,7 +112,7 @@ const LiveChat = () => {
                 <h2> {loading ? (<div>Loading...</div>) : data.group.name} </h2>
                 {/* TODO: Add logo button for photos */}
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
-                {evaluateAdmin ? <AddGroupMember /> : null}
+                {evaluateAdmin() ? <AddGroupMember /> : null}
             </div>
             <div className='message-div'>
                 {/* TODO: Render messages in real time via subscriptions */}
