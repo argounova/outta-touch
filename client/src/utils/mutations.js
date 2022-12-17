@@ -54,7 +54,25 @@ mutation createGroup($name: String!, $admin: ID!) {
 `
 export const ADD_GROUP_MEMBER = gql`
 mutation addGroupMember($userId: ID!, $groupId: ID!, $admin: ID!) {
-  addGroupMember(userId: $userId, groupId: $groupId, admin: $admin)
+  addGroupMember(userId: $userId, groupId: $groupId, admin: $admin) {
+    _id
+    admins {
+      _id
+      email
+      username
+    }
+    members {
+      _id
+      email
+      username
+    }
+    messages {
+      message
+      timestamp
+      updated
+    }
+    name
+  }
 }
 `
 

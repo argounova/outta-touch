@@ -52,3 +52,11 @@ query group($groupId: ID!) {
   }
 }
 `;
+
+export const QUERY_USER_BY_NAME = gql`
+query userByName($username: String!) {
+  userByName(username: $username) {
+    _id
+  }
+}
+`
