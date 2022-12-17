@@ -129,14 +129,7 @@ const LiveChat = () => {
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
                 {evaluateAdmin() ? <AddGroupMember /> : null}
             </div>
-            <div className='message-div'>
-                {/* TODO: Render messages in real time via subscriptions */}
-            </div>
-            {/* TODO: Add button send message functionality */}
-            <form className="message-form">
-                <input className="message-input" placeholder=". . . my super sick message" name="chat" type="text" />
-                <button className='message-button' type="submit" >Send Message</button>
-            </form>
+
         </>
     )
 }
