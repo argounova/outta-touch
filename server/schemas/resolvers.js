@@ -45,12 +45,17 @@ const resolvers = {
     userByName: async (parent, { username }) => {
       return User.findOne({ username });
     },
+    messages: async (parent, {groupId}, context) => {
+      const groupMessageData = await Group.findOne({groupId});
+
+        return groupMessageData;
+    }
   },
 
   Mutation: {
     postMessage: async (parent, {body, groupId, username}, context) => {
       
-        return Group.findOneAndUpdate(groupId,
+        const addMessageData = await Group.findOneAndUpdate(groupId,
           {$addToSet: {
             messages: {
               body: body,
@@ -61,6 +66,8 @@ const resolvers = {
             }
           }}
         );
+
+        return addMessageData;
     },
     /// ADD USER ///
     addUser: async (parent, args) => {
