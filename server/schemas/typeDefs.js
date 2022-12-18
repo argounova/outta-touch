@@ -48,7 +48,7 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    messageAdded(groupId: ID!): Group
+    messageAdded(body: String!, groupId: ID!, username: String!):Group
   }
   
 `;
