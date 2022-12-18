@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import './assets/css/usermessages.css';
 import { useQuery } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
+import {MESSAGE_SUBSCRIPTION} from '../../utils/subscriptions'
 
 const DisplayMessages = () => {
 
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
 
-    const { loading, data } = useQuery(QUERY_GROUP,
+    const { loading, data, subscribeToMore, ...result } = useQuery(QUERY_GROUP,
         {
             variables: {
                 groupId: currentGroup
@@ -58,6 +59,7 @@ const DisplayMessages = () => {
                 // for anyone else, style them this way:
             } else {
                 return (
+                    <>
                     <ul className="user-messages" key={index} style={{
                         textAlign: "left",
                         alignSelf: "flex-start",
@@ -69,21 +71,42 @@ const DisplayMessages = () => {
                         <li className="message-body">{messageData[index].body}</li>
                         <li className="message-timestamp">{handleTimeStamp(index)}</li>
                     </ul>
+                    </>
                 )
             }
         }
 
     });
 
+    const MessageDiv = () => {
+        return (
+            <div id="scroll" className='message-div'>
+                {/* TODO: Render messages in real time */}
+                {loading ? 'Loading..' : handleMessages}
+            </div>
+        )
+    }
+
     return (
         <>
             <div className="heading-container">
                 <h2 id="user-heading">Logged in as: {currentUser}</h2>
             </div>
-            <div id="scroll" className='message-div'>
-                {/* TODO: Render messages in real time */}
-                {loading ? 'Loading..' : handleMessages}
-            </div>
+            <MessageDiv {...result}
+                    subscribeToNewMessages={()=>
+                    subscribeToMore({
+                        document: MESSAGE_SUBSCRIPTION,
+                        variables: {groupId: currentGroup},
+                        updateQuery: (prev, { subscriptionData }) => {
+                            if (!subscriptionData.data) return prev;
+                            // !could be .group.messages
+                            const newMessage = subscriptionData.data.group.messages;
+
+                            return Object.assign({}, prev, {
+                                messages: [newMessage, ...prev.messages]
+                            })
+                        }
+                    })}/>
         </>
     )
 }
