@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import './assets/css/usermessages.css';
 import { useQuery, useSubscription } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
-import { MESSAGE_SUBSCRIPTION } from '../../utils/subscriptions'
+import {MESSAGE_SUBSCRIPTION} from '../../utils/subscriptions'
 
 const DisplayMessages = () => {
 
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
+    const groupMessageData = JSON.parse(localStorage.getItem('groupMessageData'));
 
-    const { loading, data, subscribeToMore, ...result } = useQuery(QUERY_GROUP,
-        {
-            variables: {
-                groupId: currentGroup
-            }
-        })
+    // console.log(groupMessageData);
 
-    const messageData = loading ? 'Loading...' : data.group.messages;
+    const { loading, data, } = useSubscription(MESSAGE_SUBSCRIPTION);
+
+    // if subscriptions is still loading, present whats in loc storage (data is deleted from loc storage after logout)
+    const messageData = loading ? groupMessageData : data.messageAdded.data.messages;
     console.log(messageData);
 
     const handleTimeStamp = (index) => {
@@ -27,12 +26,6 @@ const DisplayMessages = () => {
     }
 
     const handleMessages = Object.keys(messageData).map((index) => {
-
-        if (loading) {
-            return (
-                <div>Loading...</div>
-            )
-        } else {
 
             // if messages belong to the logged in user style them this way:
             if (messageData[index].user.username === currentUser) {
@@ -60,30 +53,29 @@ const DisplayMessages = () => {
             } else {
                 return (
                     <>
-                        <ul className="user-messages" key={index} style={{
-                            textAlign: "left",
-                            alignSelf: "flex-start",
-                            border: "2px solid var(--light-grey)",
-                            backgroundColor: "var(--light-grey)"
+                    <ul className="user-messages" key={index} style={{
+                        textAlign: "left",
+                        alignSelf: "flex-start",
+                        border: "2px solid var(--light-grey)",
+                        backgroundColor: "var(--light-grey)"
 
-                        }}>
-                            <li className="message-username">{messageData[index].user.username}</li>
-                            <li className="message-body">{messageData[index].body}</li>
-                            <li className="message-timestamp">{handleTimeStamp(index)}</li>
-                        </ul>
+                    }}>
+                        <li className="message-username">{messageData[index].user.username}</li>
+                        <li className="message-body">{messageData[index].body}</li>
+                        <li className="message-timestamp">{handleTimeStamp(index)}</li>
+                    </ul>
                     </>
                 )
-            }
         }
 
     });
 
     const MessageDiv = () => {
-
+        
         return (
             <div id="scroll" className='message-div'>
                 {/* TODO: Render messages in real time */}
-                {loading ? 'Loading..' : handleMessages}
+                { handleMessages }
             </div>
         )
     }
@@ -93,26 +85,9 @@ const DisplayMessages = () => {
             <div className="heading-container">
                 <h2 id="user-heading">Logged in as: {currentUser}</h2>
             </div>
-            <MessageDiv
-                {...result}
-                subscribeToNewMessages={() =>
-                    subscribeToMore({
-                        document: MESSAGE_SUBSCRIPTION,
-                        updateQuery: (prev, { subscriptionData }) => {
-                            if (!subscriptionData.data) return prev;
-                            // !could be .group.messages
-                            const newMessage = subscriptionData.data.messageAdded.data.messages;
-                            console.log(newMessage);
-                            return Object.assign({}, prev, {
-                                messages: [newMessage, ...prev.messages]
-                            })
-                        }
-                    })}
-            />
+            <MessageDiv />
         </>
     )
 }
 
 export default DisplayMessages;
-
-// data.messageAdded.data.messages

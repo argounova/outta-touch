@@ -24,6 +24,7 @@ class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('currentGroupChat');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('groupMessageData');
     window.location.assign('/');
   };
 };
