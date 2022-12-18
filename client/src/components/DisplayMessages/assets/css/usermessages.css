@@ -6,16 +6,23 @@
     height: 100%;
     border-left: #000 solid 2px;
     border-right: #000 solid 2px;
-    background: linear-gradient(180deg, rgba(217,210,215,1) 7%, rgba(255,247,253,1) 100%);
+    background: linear-gradient(180deg, rgba(217, 210, 215, 1) 7%, rgba(255, 247, 253, 1) 100%);
     overflow: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
 }
+
+.message-div::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 
 .heading-container {
     padding: 1%;
     width: 100%;
     border-left: #000 solid 2px;
     border-right: #000 solid 2px;
-    background: linear-gradient(180deg, rgba(217,210,215,1) 7%, rgba(255,247,253,1) 100%);
+    background: linear-gradient(180deg, rgba(217, 210, 215, 1) 7%, rgba(255, 247, 253, 1) 100%);
 }
 
 #user-heading {
@@ -29,20 +36,19 @@
 
 /* each ul rendered (one chat message from a user) */
 .user-messages {
-list-style: none;
-border: 2px solid var(--blue);
+    list-style: none;
+    border: 2px solid var(--blue);
+    padding: 1%;
 }
 
 /* the username displayed for who sent the message */
 .message-username {
-
+    font-family: var(--chewy);
+    font-weight: 900;
 }
 
 /* the body of the message sent */
-.message-body {
+.message-body {}
 
-}
 /* the timestamp of the message */
-.message-timestamp {
-    
-}
+.message-timestamp {}
