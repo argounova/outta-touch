@@ -67,14 +67,18 @@ const resolvers = {
           }}
         );
 
-        pubsub.publish('messageAdded', {
+        const updatedGroup = await Group.findById(groupId);
+
+        await pubsub.publish('messageAdded', {
           messageAdded:{
             mutation: 'MESSAGE_SUBSCRIPTION',
-            data: addMessageData
+            data: updatedGroup
           }
         })
 
-        return addMessageData;
+        console.log(updatedGroup);
+
+        return updatedGroup;
     },
     /// ADD USER ///
     addUser: async (parent, args) => {
@@ -184,6 +188,7 @@ const resolvers = {
       subscribe(parent, {body, groupId, username}) {
 
       return pubsub.asyncIterator('messageAdded')
+      
       }
     },
   },
