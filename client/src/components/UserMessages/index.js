@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './assets/css/usermessages.css'
 
 const UserMessages = () => {
-    
+
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
     const [formState, setFormState] = useState({ message: ''});
@@ -20,6 +20,7 @@ const UserMessages = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         setFormState({
             message: ''
