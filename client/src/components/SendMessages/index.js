@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useMutation } from '@apollo/client';
+import { POST_MESSAGE } from "../../utils/mutations";
 
 import './assets/css/sendmessages.css';
 
@@ -6,6 +8,7 @@ const SendMessages = () => {
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
     const [formState, setFormState] = useState({ message: '' });
+    const [postMessage, { error, data }] = useMutation(POST_MESSAGE);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -15,12 +18,24 @@ const SendMessages = () => {
             [name]: value,
         });
 
-        console.log(formState);
+        console.log(formState.message);
     };
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        e.stopPropagation();
+
+        try {
+            const { data } = await postMessage({
+                variables: {
+                    body: formState.message,
+                    username: currentUser,
+                    groupId: currentGroup,
+                }
+            })
+        }
+        catch (error) {
+            console.log(error);
+        }
 
         setFormState({
             message: ''
