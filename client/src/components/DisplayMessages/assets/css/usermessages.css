@@ -39,16 +39,22 @@
     list-style: none;
     border: 2px solid var(--blue);
     padding: 1%;
+    width: 80%;
 }
 
 /* the username displayed for who sent the message */
 .message-username {
     font-family: var(--chewy);
     font-weight: 900;
+    font-size: 1.2rem;
 }
 
 /* the body of the message sent */
-.message-body {}
+.message-body {
+
+}
 
 /* the timestamp of the message */
-.message-timestamp {}
+.message-timestamp {
+    font-size: .75rem;
+}

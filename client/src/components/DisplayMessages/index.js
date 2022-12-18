@@ -34,19 +34,25 @@ const DisplayMessages = () => {
         } else {
 
             if (messageData[index].user.username === currentUser) {
-            return (
-                <ul className="user-messages" key={index} style={{textAlign: "right"}}>
-                    <li className="message-username">{messageData[index].user.username}</li>
-                    <li className="message-body">{messageData[index].body}</li>
-                    <li className="message-timestamp">sent: {handleTimeStamp(index)}</li>
-                </ul>
-            )
-            } else {
                 return (
-                    <ul className="user-messages" key={index} style={{textAlign: "left"}}>
+                    <ul className="user-messages" key={index} style={{
+                        textAlign: "right",
+                        alignSelf: "flex-end",
+                    }}>
                         <li className="message-username">{messageData[index].user.username}</li>
                         <li className="message-body">{messageData[index].body}</li>
-                        <li className="message-timestamp">sent: {handleTimeStamp(index)}</li>
+                        <li className="message-timestamp">{handleTimeStamp(index)}</li>
+                    </ul>
+                )
+            } else {
+                return (
+                    <ul className="user-messages" key={index} style={{
+                        textAlign: "left",
+                        alignSelf: "flex-start",
+                    }}>
+                        <li className="message-username">{messageData[index].user.username}</li>
+                        <li className="message-body">{messageData[index].body}</li>
+                        <li className="message-timestamp">{handleTimeStamp(index)}</li>
                     </ul>
                 )
             }
