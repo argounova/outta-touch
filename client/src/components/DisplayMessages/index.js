@@ -9,14 +9,14 @@ const DisplayMessages = () => {
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
 
-    const { loading, data } = useQuery(QUERY_GROUP,
+    const { loading, data } = useSubscription(MESSAGE_SUBSCRIPTION,
         {
             variables: {
                 groupId: currentGroup
             }
         })
 
-    const messageData = loading ? 'Loading...' : data.group.messages;
+    const messageData = loading ? 'Loading...' : data.messageAdded.data.messages;
     console.log(messageData);
 
     const handleTimeStamp = (index) => {

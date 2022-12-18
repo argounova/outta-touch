@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const MESSAGE_SUBSCRIPTION = gql`
-subscription OnMessageAdded($groupId: ID!) {
-  messageAdded (groupId: $groupId) {
+subscription messageAdded {
+  messageAdded {
     mutation
     data {
       messages {
