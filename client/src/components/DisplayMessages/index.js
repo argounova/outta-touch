@@ -3,7 +3,6 @@ import './assets/css/usermessages.css';
 import { useQuery } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
 
-
 const DisplayMessages = () => {
 
     const currentGroup = localStorage.getItem('currentGroupChat');
@@ -19,6 +18,13 @@ const DisplayMessages = () => {
     const messageData = loading ? 'Loading...' : data.group.messages;
     console.log(messageData);
 
+    const handleTimeStamp = (index) => {
+        let time = messageData[index].timestamp;
+        let date = new Date(time);
+        date = date.toLocaleString();
+        return date;
+    }
+
     const handleMessages = Object.keys(messageData).map((index) => {
 
         if (loading) {
@@ -26,11 +32,11 @@ const DisplayMessages = () => {
                 <div>Loading...</div>
             )
         } else {
-            return(
+            return (
                 <ul className="user-messages" key={index}>
-                <li className="message-username">{messageData[index].user.username}</li>
-                <li className="message-body">{messageData[index].body}</li>
-                <li className="message-timestamp">sent: {messageData[index].timestamp}</li>
+                    <li className="message-username">{messageData[index].user.username}</li>
+                    <li className="message-body">{messageData[index].body}</li>
+                    <li className="message-timestamp">sent: {handleTimeStamp(index)}</li>
                 </ul>
             )
         }
@@ -39,10 +45,12 @@ const DisplayMessages = () => {
 
     return (
         <>
-            <div className='message-div'>
-                {/* TODO: Render messages in real time */}
+            <div className="heading-container">
                 <h2 id="user-heading">Logged in as: {currentUser}</h2>
-                    {loading ? 'Loading..' : handleMessages}
+            </div>
+            <div id="scroll" className='message-div'>
+                {/* TODO: Render messages in real time */}
+                {loading ? 'Loading..' : handleMessages}
             </div>
         </>
     )

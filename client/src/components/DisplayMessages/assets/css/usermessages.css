@@ -7,6 +7,15 @@
     border-left: #000 solid 2px;
     border-right: #000 solid 2px;
     background: linear-gradient(180deg, rgba(217,210,215,1) 7%, rgba(255,247,253,1) 100%);
+    overflow: scroll;
+}
+
+.heading-container {
+    padding: 1%;
+    width: 100%;
+    border-left: #000 solid 2px;
+    border-right: #000 solid 2px;
+    background: linear-gradient(180deg, rgba(217,210,215,1) 7%, rgba(255,247,253,1) 100%);
 }
 
 #user-heading {
@@ -16,4 +25,23 @@
     border: 2px solid black;
     border-radius: 2rem;
     width: max-content;
+}
+
+/* each ul rendered (one chat message from a user) */
+.user-messages {
+
+}
+
+/* the username displayed for who sent the message */
+.message-username {
+
+}
+
+/* the body of the message sent */
+.message-body {
+
+}
+/* the timestamp of the message */
+.message-timestamp {
+    
 }
