@@ -39,12 +39,18 @@ const DisplayMessages = () => {
                         textAlign: "right",
                         alignSelf: "flex-end",
                         border: "2px solid var(--blue)",
-                        backgroundColor: "rgba(35, 20, 149, .7)"
+                        backgroundColor: "var(--blue)"
 
                     }}>
-                        <li className="message-username">{messageData[index].user.username}</li>
-                        <li className="message-body">{messageData[index].body}</li>
-                        <li className="message-timestamp">{handleTimeStamp(index)}</li>
+                        <li className="message-username" style={{
+                            color: "var(--orange)"
+                        }}>{messageData[index].user.username}</li>
+                        <li className="message-body" style={{
+                            color: "var(--yellow)"
+                        }}>{messageData[index].body}</li>
+                        <li className="message-timestamp" style={{
+                            color: "var(--light-grey)"
+                        }}>{handleTimeStamp(index)}</li>
                     </ul>
                 )
             } else {
@@ -53,7 +59,7 @@ const DisplayMessages = () => {
                         textAlign: "left",
                         alignSelf: "flex-start",
                         border: "2px solid var(--light-grey)",
-                        backgroundColor: "rgba(242, 234, 240, .7)"
+                        backgroundColor: "var(--light-grey)"
 
                     }}>
                         <li className="message-username">{messageData[index].user.username}</li>

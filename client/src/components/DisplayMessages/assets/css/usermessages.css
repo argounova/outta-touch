@@ -51,7 +51,8 @@
 
 /* the body of the message sent */
 .message-body {
-
+font-family: var(--messaging);
+font-size: 1.1rem;
 }
 
 /* the timestamp of the message */

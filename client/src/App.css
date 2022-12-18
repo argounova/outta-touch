@@ -42,6 +42,7 @@
 
     /** Font Variables */
     --chewy: 'Chewy', cursive;
+    --messaging: 'Signika Negative', sans-serif;
 
     /** effect variables */
     --default-shadow: 0.1em 0.1em 0.1em black,
