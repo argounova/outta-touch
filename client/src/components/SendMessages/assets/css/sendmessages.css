@@ -1,0 +1,21 @@
+.message-form {
+    width: 100%;
+}
+
+.message-input {
+    height: 40px;
+    width: 100%;
+    border-left: #000 solid 2px;
+    border-right: #000 solid 2px;
+    padding: 1%;
+}
+
+.message-button {
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: var(--chewy);
+    background-color: var(--yellow);
+    color: var(--PPshade1);
+    font-size: 30px;
+}

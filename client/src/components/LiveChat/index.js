@@ -15,6 +15,7 @@ import Auth from "../../utils/auth";
 
 // components:
 import DisplayMessages from "../DisplayMessages";
+import SendMessages from "../SendMessages";
 
 const LiveChat = () => {
     // const navigate = useNavigate();
@@ -133,6 +134,7 @@ const LiveChat = () => {
                 {evaluateAdmin() ? <AddGroupMember /> : null}
             </div>
             <DisplayMessages />
+            <SendMessages />
         </>
     )
 }
