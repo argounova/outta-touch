@@ -9,21 +9,6 @@ query user($userId: ID!) {
     groups {
       _id
       name
-      admins {
-        _id
-        email
-        username
-      }
-      members {
-        _id
-        email
-        username
-      }
-      messages {
-        message
-        timestamp
-        updated
-      }
     }
   }
 }
