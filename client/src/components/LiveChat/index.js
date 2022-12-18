@@ -14,7 +14,7 @@ import inviteBtn from './assets/img/Invite.png';
 import Auth from "../../utils/auth";
 
 // components:
-import UserMessages from "../UserMessages";
+import DisplayMessages from "../DisplayMessages";
 
 const LiveChat = () => {
     // const navigate = useNavigate();
@@ -132,7 +132,7 @@ const LiveChat = () => {
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
                 {evaluateAdmin() ? <AddGroupMember /> : null}
             </div>
-            <UserMessages />
+            <DisplayMessages />
         </>
     )
 }

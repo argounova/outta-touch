@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
 
 
-const UserMessages = () => {
+const DisplayMessages = () => {
 
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
@@ -65,7 +65,7 @@ const UserMessages = () => {
     return (
         <>
             <div className='message-div'>
-                {/* TODO: Render messages in real time via subscriptions */}
+                {/* TODO: Render messages in real time */}
                 <h2 id="user-heading">Logged in as: {currentUser}</h2>
                     {loading ? 'Loading..' : handleMessages}
             </div>
@@ -78,4 +78,4 @@ const UserMessages = () => {
     )
 }
 
-export default UserMessages;
+export default DisplayMessages;

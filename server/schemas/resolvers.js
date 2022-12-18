@@ -51,7 +51,7 @@ const resolvers = {
     postMessage: async (parent, {body, groupId, username}, context) => {
       
         const addMessageData = await Group.findByIdAndUpdate(groupId,
-          {$addToSet: {
+          {$push: {
             messages: {
               body: body,
               user: {
