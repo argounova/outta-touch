@@ -33,6 +33,7 @@ const DisplayMessages = () => {
             )
         } else {
 
+            // if messages belong to the logged in user style them this way:
             if (messageData[index].user.username === currentUser) {
                 return (
                     <ul className="user-messages" key={index} style={{
@@ -53,6 +54,8 @@ const DisplayMessages = () => {
                         }}>{handleTimeStamp(index)}</li>
                     </ul>
                 )
+
+                // for anyone else, style them this way:
             } else {
                 return (
                     <ul className="user-messages" key={index} style={{
