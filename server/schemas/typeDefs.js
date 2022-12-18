@@ -48,7 +48,12 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    messageAdded(body: String!, groupId: ID!, username: String!):Group
+    messageAdded: MessageSubscriptionPayload!
+  }
+
+  type MessageSubscriptionPayload {
+    mutation: String!
+    data: Message!
   }
   
 `;

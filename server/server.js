@@ -10,7 +10,7 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { WebSocketServer } = require('ws');
 const { useServer } = require('graphql-ws/lib/use/ws');
 
-const { typeDefs, resolvers } = require("./schemas");
+const { typeDefs, resolvers} = require("./schemas");
 const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
@@ -36,8 +36,6 @@ const server = new ApolloServer({
       }
     }
   ],
-  typeDefs,
-  resolvers,
   context: authMiddleware,
   cache: "bounded",
 });
@@ -63,7 +61,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
-const startApolloServer = async (typeDefs, resolvers) => {
+const startApolloServer = async (schema) => {
   await server.start();
   server.applyMiddleware({ app });
 

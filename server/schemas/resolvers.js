@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Group } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType, Kind } = require("graphql");
+
 const { PubSub } = require('graphql-subscriptions');
 
 const pubsub = new PubSub();
@@ -42,7 +43,9 @@ const resolvers = {
 
     },
     group: async (parent, { groupId }, context) => {
+
       const groupData = await Group.findById(groupId);
+      
       return groupData;
     },
     userByName: async (parent, { username }) => {
@@ -51,7 +54,7 @@ const resolvers = {
   },
 
   Mutation: {
-    postMessage: async (parent, {body, groupId, username}, context) => {
+    postMessage: async (parent, {body, groupId, username}) => {
       
         const addMessageData = await Group.findByIdAndUpdate(groupId,
           {$push: {
@@ -63,6 +66,13 @@ const resolvers = {
             }
           }}
         );
+
+        pubsub.publish('messageAdded', {
+          messageAdded:{
+            mutation: 'MESSAGE_SUBSCRIPTION',
+            data: {...addMessageData}
+          }
+        })
 
         return addMessageData;
     },
@@ -171,8 +181,12 @@ const resolvers = {
   },
   Subscription: {
     messageAdded: {
-    }
-  }
+      subscribe(parent, {body, groupId, username}) {
+
+      return pubsub.asyncIterator('messageAdded')
+      }
+    },
+  },
 };
 
 module.exports = resolvers;

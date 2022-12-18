@@ -101,7 +101,7 @@ const DisplayMessages = () => {
                             if (!subscriptionData.data) return prev;
                             // !could be .group.messages
                             const newMessage = subscriptionData.data.group.messages;
-
+                            console.log(newMessage);
                             return Object.assign({}, prev, {
                                 messages: [newMessage, ...prev.messages]
                             })
