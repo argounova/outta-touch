@@ -2,6 +2,9 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Group } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType, Kind } = require("graphql");
+const { PubSub } = require('graphql-subscriptions');
+
+const pubsub = new PubSub();
 
 const dateScalar = new GraphQLScalarType({
   name: "Date",
@@ -47,21 +50,32 @@ const resolvers = {
     },
   },
 
+  // TODO: double check subscription mutation update
   Mutation: {
-    postMessage: async (parent, {body, groupId, username}, context) => {
-      
-        const addMessageData = await Group.findByIdAndUpdate(groupId,
-          {$push: {
+    postMessage: async (parent, { body, groupId, username }, { postController }) => {
+
+      await Group.findByIdAndUpdate(groupId,
+        {
+          $push: {
             messages: {
               body: body,
               user: {
                 username: username
               }
             }
-          }}
-        );
+          }
+        }
+      );
 
-        return addMessageData;
+      await pubsub.publish('POST_MESSAGE', {
+        messageAdded: {
+          body,
+          groupId,
+          username
+        }
+      })
+
+      return postController.postMessage({ body, groupId, username });
     },
     /// ADD USER ///
     addUser: async (parent, args) => {
@@ -126,15 +140,17 @@ const resolvers = {
         const groupData = await Group.findByIdAndUpdate(groupId,
           { $addToSet: { members: userData._id } });
 
-          // TODO: Maybe? So, pushing the members and admins  array to the users groups array is causing the user to have duplications of the same group in their array. Removing those fields seems to solve the problem... Most chat page rendering should come from querying the group model so i dont think this will end up being an issue. Its nice to have that information in the user groups array but i dont think it will be neccessary... 
+        // TODO: Maybe? So, pushing the members and admins  array to the users groups array is causing the user to have duplications of the same group in their array. Removing those fields seems to solve the problem... Most chat page rendering should come from querying the group model so i dont think this will end up being an issue. Its nice to have that information in the user groups array but i dont think it will be neccessary... 
         // calling this last so the user's groups array gets the full list of mbrs
         await User.findByIdAndUpdate(userId,
-          { $addToSet: { 
-            groups: {
-              name: groupData.name,
-              _id: groupData._id,
+          {
+            $addToSet: {
+              groups: {
+                name: groupData.name,
+                _id: groupData._id,
+              }
             }
-          } });
+          });
 
         // console.log(testUser);
         console.log('Successfully added group member')
@@ -164,6 +180,11 @@ const resolvers = {
       groupData.save();
       userData.save();
       return true;
+    },
+  },
+  Subscription: {
+    messageAdded: {
+      subscribe: () => pubsub.asyncIterator(['POST_MESSAGE']),
     },
   },
 };

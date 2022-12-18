@@ -12,10 +12,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 
-const wsLink = new GraphQLWsLink(createClient({
-  url: 'ws://localhost:4000/subscriptions',
-}));
-
 import Auth from './utils/auth';
 
 /// Pages ///
@@ -27,6 +23,11 @@ import Chat from './pages/Chat';
 import ProtectRoute from './components/ProtectRoute';
 
 import './App.css';
+
+// Web Socket:
+const wsLink = new GraphQLWsLink(createClient({
+  url: 'ws://localhost:3001/graphql',
+}));
 
 const httpLink = createHttpLink({
   uri: '/graphql',
