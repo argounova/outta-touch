@@ -70,7 +70,7 @@ const resolvers = {
         pubsub.publish('messageAdded', {
           messageAdded:{
             mutation: 'MESSAGE_SUBSCRIPTION',
-            data: {...addMessageData}
+            data: addMessageData
           }
         })
 

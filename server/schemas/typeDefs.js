@@ -53,7 +53,7 @@ const typeDefs = gql`
 
   type MessageSubscriptionPayload {
     mutation: String!
-    data: Message!
+    data: Group!
   }
   
 `;
