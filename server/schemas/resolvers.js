@@ -76,7 +76,7 @@ const resolvers = {
           }
         })
 
-        console.log(updatedGroup);
+        // console.log(updatedGroup);
 
         return updatedGroup;
     },
