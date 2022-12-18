@@ -27,6 +27,9 @@ const LiveChat = () => {
             }
         });
 
+        // for display message component
+    const displayMessageLocalStorage = loading ? 'Loading...' : localStorage.setItem('groupMessageData', JSON.stringify(data.group.messages));
+
     // console.log(loading ? 'Loading ...' : data.group.admins);
     let adminArray = loading ? 'Loading ...' : data.group.admins;
     const currentUser = Auth.getUser();
@@ -133,7 +136,7 @@ const LiveChat = () => {
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
                 {evaluateAdmin() ? <AddGroupMember /> : null}
             </div>
-            <DisplayMessages />
+            { loading ? (<div>Loading...</div>) : <DisplayMessages />}
             <SendMessages />
         </>
     )

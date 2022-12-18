@@ -3,6 +3,10 @@ const { User, Group } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType, Kind } = require("graphql");
 
+const { PubSub } = require('graphql-subscriptions');
+
+const pubsub = new PubSub();
+
 const dateScalar = new GraphQLScalarType({
   name: "Date",
   description: "Date custom scalar type",
@@ -39,7 +43,9 @@ const resolvers = {
 
     },
     group: async (parent, { groupId }, context) => {
+
       const groupData = await Group.findById(groupId);
+      
       return groupData;
     },
     userByName: async (parent, { username }) => {
@@ -48,7 +54,7 @@ const resolvers = {
   },
 
   Mutation: {
-    postMessage: async (parent, {body, groupId, username}, context) => {
+    postMessage: async (parent, {body, groupId, username}) => {
       
         const addMessageData = await Group.findByIdAndUpdate(groupId,
           {$push: {
@@ -61,7 +67,18 @@ const resolvers = {
           }}
         );
 
-        return addMessageData;
+        const updatedGroup = await Group.findById(groupId);
+
+        await pubsub.publish('messageAdded', {
+          messageAdded:{
+            mutation: 'MESSAGE_SUBSCRIPTION',
+            data: updatedGroup
+          }
+        })
+
+        // console.log(updatedGroup);
+
+        return updatedGroup;
     },
     /// ADD USER ///
     addUser: async (parent, args) => {
@@ -164,6 +181,15 @@ const resolvers = {
       groupData.save();
       userData.save();
       return true;
+    },
+  },
+  Subscription: {
+    messageAdded: {
+      subscribe(parent, {body, groupId, username}) {
+
+      return pubsub.asyncIterator('messageAdded')
+      
+      }
     },
   },
 };
