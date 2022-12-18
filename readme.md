@@ -1,63 +1,41 @@
-# MERN w/ GraphQL Boilerplate
+# OUTTA TOUCH
 
-MERN stack boiler plate with Sign Up / Login / Logout functionality using GraphQL, Apollo Server, and Apollo Client. Can Sign Up / Login and be taken to a Dashboard where user can logout using functionality set up in client/utils/auth.js. No styling, just basic Sign Up / Login / Logout functionality. Also uses React Router.
+## Description
 
-## Instructions:
+A social media application seeking to connect friends and family through messages, photos and other content.
 
-Follow along below to install the latest dependencies, or ``` npm install ``` in the root directory for the versions included in the current package.json files.
+- The primary motivation behind the project was to create a true MERN full stack application taking advantage of the latest technologies and trends.
+- This app keeps family and friends in touch without the public exposure of similar web applications.
+- This project rendered a deeper understanding of queries and mutations, Apollo server and how to develop a subscription or listener between the client and server for real time updates.
 
-### Client Folder:
+## Table of Contents
 
-- delete the package-lock.json
-- in the package.json, delete all dependencies
-- navigate to the client folder
-- run the following command:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
 
-```
-  npm install @apollo/client graphql jwt-decode react react-dom react-router-dom react-scripts web-vitals @testing-library/jest-dom @testing-library/react @testing-library/user-event
+## Installation
 
-```
+Installation is as easy as navigating to the appropriate URL in your favorite browser.  Click Install and download the app to your machine.  Create an account, sign in and start chatting!
 
-- while in the client folder, run ```npm start``` to make sure there are no errors
+## Usage
 
-### Server Folder: 
+Click Sign Up to create an account.  From your dashboard, choose Create a Group. Once in the chat, click the mail icon to invite fellow users to your chat.
 
-- delete the package-lock.json
-- in the package.json, delete all dependencies
-- navigate to the server folder
-- run the following command:
+![application screenshot](screenshot pathway)
 
-```
-npm install apollo-server-express bcrypt express graphql jsonwebtoken mongoose dotenv
+## Credits
 
-```
+1. Kaileb Hammontree 2. Brandon Hill 3. Craig Putzstuck
 
-- in the connection.js (server/config/connection.js) make sure to change the name of the database to the name of your corresponding database
+## License
 
-- navigate to server folder, run ```npm start``` to make sure there are no errors
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+MIT License
 
-### Root Directory: 
+## Questions
 
-- install concurrently as a dev dependency:
-
-```
-npm i concurrently -D
-
-```
-
-### Side Notes:
-
-- you'll eventually want to change the favicon.ico in the client/public folder (this is the icon shown on the tab of the browser)
-- you'll want to change the title in the client/public/index.html from "MERN" to the name of your application
-- you'll also want to change the "name" in the root package.json from "mern-boiler" to the name of your application
-- if you are having issues access the Apollo Sandbox, inside server/server.js line 25, remove the "*" after the "/" - from ``` app.get('/*') ``` to ``` app.get('/') ```
-
-
-### Final Check:
- - in the root directory, run `npm run develop`
-
-### Video Demonstration:
-
-[Video Link](https://watch.screencastify.com/v/C5vZrOS3Hq7FGSvvaRPB)
- 
+- Email: putzstuck@gmail.com
+- GitHub Profile: https://github.com/argounova
