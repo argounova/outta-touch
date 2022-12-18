@@ -40,6 +40,8 @@ const SendMessages = () => {
         setFormState({
             message: ''
         });
+
+        document.querySelector('#message').value = '';
     };
 
     return (
