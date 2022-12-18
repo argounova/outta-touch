@@ -56,8 +56,7 @@ const resolvers = {
               body: body,
               user: {
                 username: username
-              },
-              timestamp: new Date,
+              }
             }
           }}
         );
