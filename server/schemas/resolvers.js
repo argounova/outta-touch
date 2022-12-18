@@ -45,17 +45,12 @@ const resolvers = {
     userByName: async (parent, { username }) => {
       return User.findOne({ username });
     },
-    messages: async (parent, {groupId}, context) => {
-      const groupMessageData = await Group.findOne({groupId});
-
-        return groupMessageData;
-    }
   },
 
   Mutation: {
     postMessage: async (parent, {body, groupId, username}, context) => {
       
-        const addMessageData = await Group.findOneAndUpdate(groupId,
+        const addMessageData = await Group.findByIdAndUpdate(groupId,
           {$addToSet: {
             messages: {
               body: body,

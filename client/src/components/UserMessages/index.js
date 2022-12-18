@@ -33,6 +33,7 @@ const UserMessages = () => {
         <>
             <div className='message-div'>
                 {/* TODO: Render messages in real time via subscriptions */}
+                <h2 id="user-heading">Logged in as: {currentUser}</h2>
             </div>
             {/* TODO: Add button send message functionality */}
             <form className="message-form" onSubmit={handleFormSubmit}>

@@ -34,7 +34,6 @@ const typeDefs = gql`
     user(userId: ID!): User
     group(groupId: ID!): Group
     userByName(username: String!): User
-    messages(groupId: ID!):Group
   }
 
   type Mutation {
