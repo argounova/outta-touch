@@ -45,9 +45,11 @@ query group($groupId: ID!) {
       username
     }
     messages {
-      message
+      body
       timestamp
-      updated
+      user {
+        username
+      }
     }
   }
 }
