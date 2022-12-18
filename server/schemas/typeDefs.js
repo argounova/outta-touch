@@ -46,6 +46,11 @@ const typeDefs = gql`
     removeGroupMember(userId: ID!, groupId: ID!, admin: ID!): Boolean
     postMessage(body: String!, groupId: ID!, username: String!):Group
   }
+
+  type Subscription {
+    messageAdded(groupId: ID!): Group
+  }
+  
 `;
 
 module.exports = typeDefs;
