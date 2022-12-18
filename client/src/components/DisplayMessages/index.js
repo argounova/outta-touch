@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import './assets/css/usermessages.css';
 import { useQuery, useSubscription } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
-import {MESSAGE_SUBSCRIPTION} from '../../utils/subscriptions'
+import { MESSAGE_SUBSCRIPTION } from '../../utils/subscriptions'
 
 const DisplayMessages = () => {
 
     const currentGroup = localStorage.getItem('currentGroupChat');
     const currentUser = localStorage.getItem('currentUser');
 
-    const { loading, data } = useSubscription(MESSAGE_SUBSCRIPTION,
+    const { loading, data, subscribeToMore, ...result } = useQuery(QUERY_GROUP,
         {
             variables: {
                 groupId: currentGroup
             }
         })
 
-    const messageData = loading ? 'Loading...' : data.messageAdded.data.messages;
+    const messageData = loading ? 'Loading...' : data.group.messages;
     console.log(messageData);
 
     const handleTimeStamp = (index) => {
@@ -60,17 +60,17 @@ const DisplayMessages = () => {
             } else {
                 return (
                     <>
-                    <ul className="user-messages" key={index} style={{
-                        textAlign: "left",
-                        alignSelf: "flex-start",
-                        border: "2px solid var(--light-grey)",
-                        backgroundColor: "var(--light-grey)"
+                        <ul className="user-messages" key={index} style={{
+                            textAlign: "left",
+                            alignSelf: "flex-start",
+                            border: "2px solid var(--light-grey)",
+                            backgroundColor: "var(--light-grey)"
 
-                    }}>
-                        <li className="message-username">{messageData[index].user.username}</li>
-                        <li className="message-body">{messageData[index].body}</li>
-                        <li className="message-timestamp">{handleTimeStamp(index)}</li>
-                    </ul>
+                        }}>
+                            <li className="message-username">{messageData[index].user.username}</li>
+                            <li className="message-body">{messageData[index].body}</li>
+                            <li className="message-timestamp">{handleTimeStamp(index)}</li>
+                        </ul>
                     </>
                 )
             }
@@ -79,7 +79,7 @@ const DisplayMessages = () => {
     });
 
     const MessageDiv = () => {
-        
+
         return (
             <div id="scroll" className='message-div'>
                 {/* TODO: Render messages in real time */}
@@ -93,26 +93,26 @@ const DisplayMessages = () => {
             <div className="heading-container">
                 <h2 id="user-heading">Logged in as: {currentUser}</h2>
             </div>
-            <MessageDiv />
+            <MessageDiv
+                {...result}
+                subscribeToNewMessages={() =>
+                    subscribeToMore({
+                        document: MESSAGE_SUBSCRIPTION,
+                        updateQuery: (prev, { subscriptionData }) => {
+                            if (!subscriptionData.data) return prev;
+                            // !could be .group.messages
+                            const newMessage = subscriptionData.data.messageAdded.data.messages;
+                            console.log(newMessage);
+                            return Object.assign({}, prev, {
+                                messages: [newMessage, ...prev.messages]
+                            })
+                        }
+                    })}
+            />
         </>
     )
 }
 
 export default DisplayMessages;
 
-
-// {...result}
-//                     subscribeToNewMessages={()=>
-//                     subscribeToMore({
-//                         document: MESSAGE_SUBSCRIPTION,
-//                         variables: {groupId: currentGroup},
-//                         updateQuery: (prev, { subscriptionData }) => {
-//                             if (!subscriptionData.data) return prev;
-//                             // !could be .group.messages
-//                             const newMessage = subscriptionData.data.group.messages;
-//                             console.log(newMessage);
-//                             return Object.assign({}, prev, {
-//                                 messages: [newMessage, ...prev.messages]
-//                             })
-//                         }
-//                     })}
+// data.messageAdded.data.messages
