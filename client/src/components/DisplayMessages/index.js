@@ -38,6 +38,9 @@ const DisplayMessages = () => {
                     <ul className="user-messages" key={index} style={{
                         textAlign: "right",
                         alignSelf: "flex-end",
+                        border: "2px solid var(--blue)",
+                        backgroundColor: "rgba(35, 20, 149, .7)"
+
                     }}>
                         <li className="message-username">{messageData[index].user.username}</li>
                         <li className="message-body">{messageData[index].body}</li>
@@ -49,6 +52,9 @@ const DisplayMessages = () => {
                     <ul className="user-messages" key={index} style={{
                         textAlign: "left",
                         alignSelf: "flex-start",
+                        border: "2px solid var(--light-grey)",
+                        backgroundColor: "rgba(242, 234, 240, .7)"
+
                     }}>
                         <li className="message-username">{messageData[index].user.username}</li>
                         <li className="message-body">{messageData[index].body}</li>

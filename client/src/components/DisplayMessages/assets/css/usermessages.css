@@ -37,9 +37,9 @@
 /* each ul rendered (one chat message from a user) */
 .user-messages {
     list-style: none;
-    border: 2px solid var(--blue);
     padding: 1%;
     width: 80%;
+    border-radius: 1rem;
 }
 
 /* the username displayed for who sent the message */
