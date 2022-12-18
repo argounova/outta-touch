@@ -22,6 +22,8 @@ class AuthService {
 
   logout() {
     localStorage.removeItem('id_token');
+    localStorage.removeItem('currentGroupChat');
+    localStorage.removeItem('currentUser');
     window.location.assign('/');
   };
 };

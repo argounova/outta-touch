@@ -9,7 +9,7 @@ const messageSchema = new Schema(
       maxLength: 200,
     },
     user: {
-      type: Schema.Types.ObjectId,
+      type: Object,
       ref: "User",
       required: true,
     },

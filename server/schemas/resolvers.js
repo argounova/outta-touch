@@ -48,6 +48,22 @@ const resolvers = {
   },
 
   Mutation: {
+    postMessage: async (parent, {body, groupId, username}, context) => {
+      
+        const addMessageData = await Group.findByIdAndUpdate(groupId,
+          {$push: {
+            messages: {
+              body: body,
+              user: {
+                username: username
+              },
+              timestamp: new Date,
+            }
+          }}
+        );
+
+        return addMessageData;
+    },
     /// ADD USER ///
     addUser: async (parent, args) => {
       const user = await User.create(args);

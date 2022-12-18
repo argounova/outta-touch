@@ -34,8 +34,8 @@ mutation createGroup($name: String!, $admin: ID!) {
   createGroup(name: $name, admin: $admin) {
     _id
     admins {
-      email
       _id
+      email
       username
     }
     members {
@@ -44,9 +44,11 @@ mutation createGroup($name: String!, $admin: ID!) {
       username
     }
     messages {
-      message
+      body
       timestamp
-      updated
+      user {
+        username
+      }
     }
     name
   }
@@ -56,6 +58,7 @@ export const ADD_GROUP_MEMBER = gql`
 mutation addGroupMember($userId: ID!, $groupId: ID!, $admin: ID!) {
   addGroupMember(userId: $userId, groupId: $groupId, admin: $admin) {
     _id
+    name
     admins {
       _id
       email
@@ -67,11 +70,12 @@ mutation addGroupMember($userId: ID!, $groupId: ID!, $admin: ID!) {
       username
     }
     messages {
-      message
+      body
       timestamp
-      updated
+      user {
+        username
+      }
     }
-    name
   }
 }
 `
@@ -126,6 +130,19 @@ mutation updateGroup($groupId: ID!, $name: String!, $admin: ID!) {
       updated
     }
     name
+  }
+}
+`
+export const POST_MESSAGE = gql`
+mutation postMessage($body: String!, $groupId: ID!, $username: String!) {
+  postMessage(body: $body, groupId: $groupId, username: $username) {
+    messages {
+      body
+      user {
+        username
+      }
+      timestamp
+    }
   }
 }
 `

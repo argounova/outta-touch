@@ -13,6 +13,10 @@ import inviteBtn from './assets/img/Invite.png';
 
 import Auth from "../../utils/auth";
 
+// components:
+import DisplayMessages from "../DisplayMessages";
+import SendMessages from "../SendMessages";
+
 const LiveChat = () => {
     // const navigate = useNavigate();
 
@@ -129,14 +133,8 @@ const LiveChat = () => {
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
                 {evaluateAdmin() ? <AddGroupMember /> : null}
             </div>
-            <div className='message-div'>
-                {/* TODO: Render messages in real time via subscriptions */}
-            </div>
-            {/* TODO: Add button send message functionality */}
-            <form className="message-form">
-                <input className="message-input" placeholder=". . . my super sick message" name="chat" type="text" />
-                <button className='message-button' type="submit" >Send Message</button>
-            </form>
+            <DisplayMessages />
+            <SendMessages />
         </>
     )
 }
