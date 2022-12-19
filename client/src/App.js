@@ -28,7 +28,7 @@ import './App.css';
 
 // Web Socket:
 const wsLink = new GraphQLWsLink(createClient({
-  url: 'ws://localhost:3001/graphql',
+  url: 'ws://outta-touch.herokuapp.com/graphql',
 }));
 
 const httpLink = createHttpLink({
