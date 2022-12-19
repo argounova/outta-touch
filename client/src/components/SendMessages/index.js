@@ -18,7 +18,7 @@ const SendMessages = () => {
             [name]: value,
         });
 
-        console.log(formState.message);
+        // console.log(formState.message);
     };
 
     const handleFormSubmit = async (e) => {

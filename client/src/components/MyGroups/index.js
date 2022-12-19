@@ -39,7 +39,7 @@ const MyGroups = () => {
 
     const storageValue = localStorage.getItem('currentUser');
 
-    console.log(storageValue);
+    // console.log(storageValue);
 
     // let the data load and then save the groups array to userGroups
 

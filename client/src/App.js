@@ -28,7 +28,7 @@ import './App.css';
 
 // Web Socket:
 const wsLink = new GraphQLWsLink(createClient({
-  url: 'ws://localhost:3001/graphql',
+  url: 'wss://outta-touch.herokuapp.com/graphql',
 }));
 
 const httpLink = createHttpLink({
@@ -47,6 +47,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const myHttpLink = authLink.concat(httpLink);
+const myWsLink = authLink.concat(wsLink);
 
 // Web Socket:
 const splitLink = split(
@@ -57,7 +58,7 @@ const splitLink = split(
       definition.operation === 'subscription'
     );
   },
-  wsLink,
+  myWsLink,
   myHttpLink,
 );
 
