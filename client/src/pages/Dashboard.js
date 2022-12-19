@@ -108,7 +108,7 @@ const Dashboard = () => {
         {showMainContent ? <MainContent /> : null}
         {showCreateAGroup ? <CreateAGroup /> : null}
         {showMyGroups ? <MyGroups /> : null}
-        {showFindAGroup ? <FindAGroup /> : null}
+        {/* {showFindAGroup ? <FindAGroup /> : null} */}
       </main>
     </>
   )
