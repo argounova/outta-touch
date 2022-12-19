@@ -146,3 +146,15 @@ mutation postMessage($body: String!, $groupId: ID!, $username: String!) {
   }
 }
 `
+
+export const LEAVE_GROUP = gql`
+mutation leaveGroup($userId: ID!, $groupId: ID!) {
+  leaveGroup(userId: $userId, groupId: $groupId) {
+    _id
+    members {
+      _id
+    }
+    name
+  }
+}
+`
