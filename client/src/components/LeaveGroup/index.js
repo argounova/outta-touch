@@ -4,6 +4,7 @@ import { LEAVE_GROUP } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
 import Auth from "../../utils/auth";
+import './assets/css/leavegroup.css';
 
 
 const LeaveGroup = () => {
@@ -27,7 +28,7 @@ const LeaveGroup = () => {
     }
 
     return(
-        <button onClick={handleLeave}>Leave Group</button>
+        <button className="leave-button" onClick={handleLeave}>Leave Group</button>
     )
 }
 
