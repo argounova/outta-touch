@@ -45,6 +45,7 @@ const typeDefs = gql`
     addGroupMember(userId: ID!, groupId: ID!, admin: ID!): Group
     removeGroupMember(userId: ID!, groupId: ID!, admin: ID!): Boolean
     postMessage(body: String!, groupId: ID!, username: String!):Group
+    leaveGroup(userId: ID!, groupId: ID!):Group
   }
 
   type Subscription {
