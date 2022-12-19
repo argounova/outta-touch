@@ -10,14 +10,21 @@ A real time social application seeking to connect friends and family through mes
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+- [OUTTA TOUCH](#outta-touch)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Credits](#credits)
+  - [License](#license)
 
 ## Installation
 
-Installation is as easy as navigating to the appropriate URL in your favorite browser.  Click Install and download the app to your machine.  Create an account, sign in and start chatting!
+Installation is as easy as navigating to the appropriate URL in your favorite browser.  Soon, you will be able to click install and download the app to your machine.  For now, create an account, sign in and start chatting!
+
+Head on over to https://outta-touch.herokuapp.com/ to check out the application.
+
+NOTE: Ability to install the application on your device is coming soon!
 
 ## Usage
 
