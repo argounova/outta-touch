@@ -20,11 +20,9 @@ A real time social application seeking to connect friends and family through mes
 
 ## Installation
 
-Installation is as easy as navigating to the appropriate URL in your favorite browser.  Soon, you will be able to click install and download the app to your machine.  For now, create an account, sign in and start chatting!
+Installation is as easy as navigating to the appropriate URL in your favorite browser.  You can click the install button in the URL field to install and download the app to your machine.  So, create an account, sign in and start chatting!
 
 Head on over to https://outta-touch.herokuapp.com/ to check out the application.
-
-NOTE: Ability to install the application on your device is coming soon!
 
 ## Usage
 
