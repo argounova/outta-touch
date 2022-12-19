@@ -47,6 +47,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const myHttpLink = authLink.concat(httpLink);
+const myWsLink = authLink.concat(wsLink);
 
 // Web Socket:
 const splitLink = split(
@@ -57,7 +58,7 @@ const splitLink = split(
       definition.operation === 'subscription'
     );
   },
-  wsLink,
+  myWsLink,
   myHttpLink,
 );
 
