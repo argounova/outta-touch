@@ -18,7 +18,6 @@ root.render(
 
 // Learn more about service workers: https://cra.link/PWA
 
-// TODO: CHANGE TO REGISTER BEFORE DEPLOYMENT
 serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function

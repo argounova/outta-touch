@@ -16,7 +16,7 @@ const DisplayMessages = () => {
 
     // if subscriptions is still loading, present whats in loc storage (data is deleted from loc storage after logout)
     const messageData = loading ? groupMessageData : data.messageAdded.data.messages;
-    console.log(messageData);
+    // console.log(messageData);
 
     const handleTimeStamp = (index) => {
         let time = messageData[index].timestamp;
