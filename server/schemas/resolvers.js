@@ -3,6 +3,8 @@ const { User, Group } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType, Kind } = require("graphql");
 
+// !There are many resolvers we have not implemented, so in order to clear up what is actually being used, you will see several chunks of commented out code. We decided to leave them there as a jumping off point for future development
+
 const { PubSub } = require('graphql-subscriptions');
 
 const pubsub = new PubSub();
@@ -118,22 +120,22 @@ const resolvers = {
       console.log('successfully created group');
       return (groupData);
     },
-    updateGroup: async (parent, { groupId, name, admin }, context) => {
-      const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find((element) => element === admin);
-      if (!isAdmin) return;
-      groupData.name = name;
-      groupData.save();
-      return groupData;
-    },
-    // TODO: Delete group from all users' groups array
-    deleteGroup: async (parent, { groupId, admin }, context) => {
-      const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find((element) => element === admin);
-      if (!isAdmin) return;
-      const groupDelete = await Group.findByIdAndDelete(groupId);
-      return groupDelete;
-    },
+    // updateGroup: async (parent, { groupId, name, admin }, context) => {
+    //   const groupData = await Group.findById(groupId);
+    //   let isAdmin = groupData.admins.find((element) => element === admin);
+    //   if (!isAdmin) return;
+    //   groupData.name = name;
+    //   groupData.save();
+    //   return groupData;
+    // },
+    // // TODO: Delete group from all users' groups array
+    // deleteGroup: async (parent, { groupId, admin }, context) => {
+    //   const groupData = await Group.findById(groupId);
+    //   let isAdmin = groupData.admins.find((element) => element === admin);
+    //   if (!isAdmin) return;
+    //   const groupDelete = await Group.findByIdAndDelete(groupId);
+    //   return groupDelete;
+    // },
     addGroupMember: async (parent, { userId, groupId, admin }, context) => {
 
       const userData = await User.findById(userId);
@@ -164,24 +166,45 @@ const resolvers = {
 
       };
     },
-    removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
-      const groupData = await Group.findById(groupId);
-      let isAdmin = groupData.admins.find((element) => element === admin);
-      if (!isAdmin) return;
-      let index = groupData.members.findIndex(
-        (element) => element.user === userId
-      );
-      if (index < 0) {
-        return false;
-      }
-      const userData = await User.findById(userId);
-      groupData.members.splice(index, 1);
-      let j = userData.groups.findIndex((element) => element === groupId);
-      if (!(j < 0)) userData.groups.splice(j, 1);
-      groupData.save();
-      userData.save();
-      return true;
-    },
+    // removeGroupMember: async (parent, { userId, groupId, admin }, context) => {
+    //   const groupData = await Group.findById(groupId);
+    //   let isAdmin = groupData.admins.find((element) => element === admin);
+    //   if (!isAdmin) return;
+    //   let index = groupData.members.findIndex(
+    //     (element) => element.user === userId
+    //   );
+    //   if (index < 0) {
+    //     return false;
+    //   }
+    //   const userData = await User.findById(userId);
+    //   groupData.members.splice(index, 1);
+    //   let j = userData.groups.findIndex((element) => element === groupId);
+    //   if (!(j < 0)) userData.groups.splice(j, 1);
+    //   groupData.save();
+    //   userData.save();
+    //   return true;
+    // },
+    leaveGroup: async (parent, {userId, groupId}, context) => {
+
+      const groupData = await Group.findByIdAndUpdate(groupId,
+        {
+          $pull: {
+            members: userId,
+          }
+        });
+
+        const userData = await User.findByIdAndUpdate(userId,
+          {
+            $pull: { 
+              groups: {
+                name: groupData.name,
+                _id: groupData._id,
+              }
+            }
+          });
+
+          return (groupData);
+      },
   },
   Subscription: {
     messageAdded: {

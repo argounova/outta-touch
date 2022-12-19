@@ -7,6 +7,7 @@ import { QUERY_GROUP, QUERY_USER_BY_NAME } from '../../utils/queries';
 import { ADD_GROUP_MEMBER } from "../../utils/mutations";
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 
+
 import Swal from 'sweetalert2';
 
 import inviteBtn from './assets/img/Invite.png';
@@ -16,6 +17,7 @@ import Auth from "../../utils/auth";
 // components:
 import DisplayMessages from "../DisplayMessages";
 import SendMessages from "../SendMessages";
+import LeaveGroup from "../LeaveGroup";
 
 const LiveChat = () => {
     // const navigate = useNavigate();
@@ -134,7 +136,7 @@ const LiveChat = () => {
                 <h2> {loading ? (<div>Loading...</div>) : data.group.name} </h2>
                 {/* TODO: Add logo button for photos */}
                 {/* <button onClick={ () => navigate(<Photos/>) }>PHOTOS</button> */}
-                {evaluateAdmin() ? <AddGroupMember /> : null}
+                {evaluateAdmin() ? <AddGroupMember /> : <LeaveGroup />}
             </div>
             { loading ? (<div>Loading...</div>) : <DisplayMessages />}
             <SendMessages />

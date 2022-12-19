@@ -1,0 +1,8 @@
+.leave-button {
+    font-family: var(--chewy);
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.2rem;
+    color: var(--blue);
+    background-color: var(--orange);
+}
