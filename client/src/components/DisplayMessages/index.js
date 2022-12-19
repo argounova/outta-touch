@@ -4,9 +4,6 @@ import { useQuery, useSubscription } from '@apollo/client';
 import { QUERY_GROUP } from '../../utils/queries';
 import {MESSAGE_SUBSCRIPTION} from '../../utils/subscriptions'
 
-// nested components
-import LeaveGroup from "../LeaveGroup";
-
 const DisplayMessages = () => {
 
     const currentGroup = localStorage.getItem('currentGroupChat');
@@ -87,7 +84,6 @@ const DisplayMessages = () => {
         <>
             <div className="heading-container">
                 <h2 id="user-heading">Logged in as: {currentUser}</h2>
-                <LeaveGroup />
             </div>
             <MessageDiv />
         </>
