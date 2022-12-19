@@ -20,6 +20,8 @@ import createAGroupIcon from './assets/img/CreateAGroup.png';
 import findAGroupIcon from './assets/img/FindAGroup.png';
 import myGroupsIcon from './assets/img/MyGroups.png';
 
+// ! Find a group is currently disabled
+
 const Dashboard = () => {
   // TODO: Additional styling needed for this page
 
@@ -77,9 +79,9 @@ const Dashboard = () => {
         <button id='paintSplatter2' className='dashboard-buttons' onClick={createAGroupClick}>
           <img className='customDash-icon' src={createAGroupIcon} />
         </button>
-        <button id='paintSplatter3' className='dashboard-buttons' onClick={findAGroupClick}>
+        {/* <button id='paintSplatter3' className='dashboard-buttons' onClick={findAGroupClick}>
           <img className='customDash-icon' src={findAGroupIcon} />
-        </button>
+        </button> */}
       </section>
     )
   }
