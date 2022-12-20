@@ -37,7 +37,7 @@ Head on over to https://outta-touch.herokuapp.com/ to check out the application.
 ## Credits
 
 - **Kaileb Hammontree**
-  - Email: hammontreewebdev@gmail.com
+  - Email: hammontreewebdevelopment@gmail.com
   - GitHub Profile: https://github.com/HammontreeWebDev
 - **Brandon Hill**
   - Email: hillbp2014@gmail.com
